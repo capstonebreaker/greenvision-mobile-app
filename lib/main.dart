@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_vision/routes/app_routes.dart';
-import 'package:green_vision/views/get_started/get_started_screen.dart';
-import 'package:green_vision/views/login/login_page.dart';
-import 'package:green_vision/views/register/register_page.dart';
 
 void main() {
   runApp(const MyApp(
