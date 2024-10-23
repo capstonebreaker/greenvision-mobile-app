@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_vision/routes/app_routes_named.dart';
 
 import '../../constants/colors.dart';
 import '../../controller/login_controller.dart';
@@ -84,6 +85,7 @@ class RegisterPage extends StatelessWidget {
                             ),
                             onPressed: () {
                               // controller.login();
+                              Get.toNamed(AppRoutesNamed.pageLogin);
                             },
                             child: Text(
                               "Sign In",
@@ -109,12 +111,7 @@ class RegisterPage extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              // Navigator.pushAndRemoveUntil(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => LoginScreen()),
-                              //       (route) => false,
-                              // );
+                              Get.toNamed(AppRoutesNamed.pageLogin);
                             },
                             child: Text(
                               "Sign In with Google",

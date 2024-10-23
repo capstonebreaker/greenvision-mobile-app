@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
 
 import '../../controller/login_controller.dart';
+import '../../routes/app_routes_named.dart';
 import '../../shared/widgets/custom_text_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -74,6 +75,7 @@ class LoginPage extends StatelessWidget {
                             ),
                             onPressed: () {
                               // controller.login();
+                              Get.toNamed(AppRoutesNamed.pageHome);
                             },
                             child: Text(
                               "Sign In",
@@ -105,6 +107,7 @@ class LoginPage extends StatelessWidget {
                               //       builder: (context) => LoginScreen()),
                               //       (route) => false,
                               // );
+                              Get.toNamed(AppRoutesNamed.pageHome);
                             },
                             child: Text(
                               "Sign In with Google",

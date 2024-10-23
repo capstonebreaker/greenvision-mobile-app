@@ -73,7 +73,7 @@ class GetStartedScreen extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16))),
                               onPressed: () {
-                                Get.toNamed(AppRoutesNamed.pageHome);
+                                Get.toNamed(AppRoutesNamed.pageRegister);
                               },
                               child: Text(
                                 "Get Started",
