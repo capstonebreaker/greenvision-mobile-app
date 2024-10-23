@@ -7,7 +7,7 @@ import 'package:green_vision/views/register/register_page.dart';
 
 void main() {
   runApp(const MyApp(
-    initialRoutes: '/get-started',
+    initialRoutes: '/page-home',
   ));
 }
 

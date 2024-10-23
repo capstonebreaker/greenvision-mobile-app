@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
+
+import '../../routes/app_routes_named.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
@@ -69,7 +73,7 @@ class GetStartedScreen extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16))),
                               onPressed: () {
-                                // Get.toNamed(AppRoutesNamed.pageLogin);
+                                Get.toNamed(AppRoutesNamed.pageHome);
                               },
                               child: Text(
                                 "Get Started",
