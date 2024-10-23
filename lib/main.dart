@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:green_vision/routes/app_routes.dart';
 import 'package:green_vision/views/get_started/get_started_screen.dart';
 import 'package:green_vision/views/login/login_page.dart';
 import 'package:green_vision/views/register/register_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp(
+    initialRoutes: '/get-started',
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoutes;
+
+  const MyApp({super.key, required this.initialRoutes});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Green Vision',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: GetStartedScreen(),
+    return GetMaterialApp(
+      initialRoute: initialRoutes,
+      getPages: AppRoutes.routes,
     );
   }
 }
