@@ -11,7 +11,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final LoginController controller = Get.put(LoginController());
 
     return Scaffold(
@@ -19,13 +18,17 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(height: 137,),
+            const SizedBox(
+              height: 137,
+            ),
             SizedBox(
               height: 140,
               width: 142,
               child: Image.asset('assets/logo/logo.png'),
             ),
-            const SizedBox(height: 81,),
+            const SizedBox(
+              height: 81,
+            ),
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
@@ -45,7 +48,7 @@ class LoginPage extends StatelessWidget {
                           child: CustomTextField(
                             hintText: 'Email',
                             controller: controller.emailController,
-                            leadingIconPath:  'assets/icons/mail.png',
+                            leadingIconPath: 'assets/icons/mail.png',
                           ),
                         ),
                         Padding(
@@ -55,8 +58,7 @@ class LoginPage extends StatelessWidget {
                             hintText: 'Password',
                             controller: controller.passwordController,
                             obscureText: true,
-                            leadingIconPath:
-                            'assets/icons/lock.png',
+                            leadingIconPath: 'assets/icons/lock.png',
                           ),
                         ),
                         const SizedBox(height: 20),
