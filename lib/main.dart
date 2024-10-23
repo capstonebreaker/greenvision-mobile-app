@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_vision/views/get_started/get_started_screen.dart';
 import 'package:green_vision/views/login/login_page.dart';
 import 'package:green_vision/views/register/register_page.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: RegisterPage(),
+      home: GetStartedScreen(),
     );
   }
 }
