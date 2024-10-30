@@ -5,6 +5,7 @@ import 'package:green_vision/routes/app_routes.dart';
 void main() {
   runApp(const MyApp(
     initialRoutes: '/page-get-started',
+
   ));
 }
 

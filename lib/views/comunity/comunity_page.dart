@@ -9,6 +9,15 @@ class ComunityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Text(
+            "AI",
+            style: GoogleFonts.dmSans(fontWeight: FontWeight.bold,
+            color: AppColorsLight.primary)
+            ,
+          ),
+      backgroundColor: AppColorsDark.third,),
       backgroundColor: Colors.black,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -75,13 +84,15 @@ class ComunityPage extends StatelessWidget {
                                                 Text("BumsYa ",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 11,
-                                                        fontWeight: FontWeight.w400,
+                                                        fontWeight:
+                                                            FontWeight.w400,
                                                         color: Colors.white)),
                                                 SizedBox(width: 10),
                                                 Text("•",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 15,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.white)),
                                                 SizedBox(
                                                   width: 10,
@@ -89,7 +100,8 @@ class ComunityPage extends StatelessWidget {
                                                 Text("Indonesia",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 8,
-                                                        fontWeight: FontWeight.normal,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                         color: Colors.grey)),
                                               ],
                                             ),
@@ -131,37 +143,46 @@ class ComunityPage extends StatelessWidget {
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("12rb",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-                                        SizedBox(width: 7,),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
                                         Icon(
                                           Icons.share,
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("160",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-                                        SizedBox(width: 7,),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
                                         Icon(
                                           Icons.chat,
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("100",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-          
                                       ],
                                     )
                                   ],
@@ -181,7 +202,9 @@ class ComunityPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 38,),
+                    SizedBox(
+                      height: 38,
+                    ),
                     Stack(
                       children: [
                         Container(
@@ -213,22 +236,24 @@ class ComunityPage extends StatelessWidget {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text("BumsYa ",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 11,
-                                                        fontWeight: FontWeight.w400,
+                                                        fontWeight:
+                                                            FontWeight.w400,
                                                         color: Colors.white)),
                                                 SizedBox(width: 10),
                                                 Text("•",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 15,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.white)),
                                                 SizedBox(
                                                   width: 10,
@@ -236,7 +261,8 @@ class ComunityPage extends StatelessWidget {
                                                 Text("Indonesia",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 8,
-                                                        fontWeight: FontWeight.normal,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                         color: Colors.grey)),
                                               ],
                                             ),
@@ -278,37 +304,46 @@ class ComunityPage extends StatelessWidget {
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("12rb",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-                                        SizedBox(width: 7,),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
                                         Icon(
                                           Icons.share,
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("160",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-                                        SizedBox(width: 7,),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
                                         Icon(
                                           Icons.chat,
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("100",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-          
                                       ],
                                     )
                                   ],
@@ -328,7 +363,9 @@ class ComunityPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 38,),
+                    SizedBox(
+                      height: 38,
+                    ),
                     Stack(
                       children: [
                         Container(
@@ -360,22 +397,24 @@ class ComunityPage extends StatelessWidget {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text("BumsYa ",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 11,
-                                                        fontWeight: FontWeight.w400,
+                                                        fontWeight:
+                                                            FontWeight.w400,
                                                         color: Colors.white)),
                                                 SizedBox(width: 10),
                                                 Text("•",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 15,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.white)),
                                                 SizedBox(
                                                   width: 10,
@@ -383,7 +422,8 @@ class ComunityPage extends StatelessWidget {
                                                 Text("Indonesia",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 8,
-                                                        fontWeight: FontWeight.normal,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                         color: Colors.grey)),
                                               ],
                                             ),
@@ -425,37 +465,46 @@ class ComunityPage extends StatelessWidget {
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("12rb",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-                                        SizedBox(width: 7,),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
                                         Icon(
                                           Icons.share,
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("160",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-                                        SizedBox(width: 7,),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
                                         Icon(
                                           Icons.chat,
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("100",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-          
                                       ],
                                     )
                                   ],
@@ -475,7 +524,9 @@ class ComunityPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 38,),
+                    SizedBox(
+                      height: 38,
+                    ),
                     Stack(
                       children: [
                         Container(
@@ -507,22 +558,24 @@ class ComunityPage extends StatelessWidget {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text("BumsYa ",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 11,
-                                                        fontWeight: FontWeight.w400,
+                                                        fontWeight:
+                                                            FontWeight.w400,
                                                         color: Colors.white)),
                                                 SizedBox(width: 10),
                                                 Text("•",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 15,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.white)),
                                                 SizedBox(
                                                   width: 10,
@@ -530,7 +583,8 @@ class ComunityPage extends StatelessWidget {
                                                 Text("Indonesia",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 8,
-                                                        fontWeight: FontWeight.normal,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                         color: Colors.grey)),
                                               ],
                                             ),
@@ -572,37 +626,46 @@ class ComunityPage extends StatelessWidget {
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("12rb",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-                                        SizedBox(width: 7,),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
                                         Icon(
                                           Icons.share,
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("160",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-                                        SizedBox(width: 7,),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
                                         Icon(
                                           Icons.chat,
                                           color: Colors.grey,
                                           size: 13,
                                         ),
-                                        SizedBox(width: 5,),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
                                         Text("100",
                                             style: GoogleFonts.dmSans(
                                                 fontSize: 8,
                                                 fontWeight: FontWeight.normal,
                                                 color: Colors.grey)),
-          
                                       ],
                                     )
                                   ],
