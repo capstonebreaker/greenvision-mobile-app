@@ -106,7 +106,6 @@ class LoginPage extends StatelessWidget {
                               //       builder: (context) => LoginScreen()),
                               //       (route) => false,
                               // );
-                              Get.toNamed(AppRoutesNamed.pageHome);
                             },
                             child: Text(
                               "Sign In with Google",
@@ -117,6 +116,44 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                           ),
+                        ),
+                        SizedBox(height: 20,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Atau',
+                              style: GoogleFonts.dmSans(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(width: 2),
+                            InkWell(
+                              onTap: () {
+                                controller.navigateToRegister();
+                              },
+                              child: Text(
+                                'daftar',
+                                style: GoogleFonts.dmSans(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 12,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 2),
+                            Text(
+                              'sekarang jika belum memiliki akun',
+                              style: GoogleFonts.dmSans(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+
                         ),
                         const SizedBox(height: 52),
                         Text(

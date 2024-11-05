@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_vision/controller/register_controller.dart';
 import 'package:green_vision/routes/app_routes_named.dart';
 
 import '../../constants/colors.dart';
@@ -13,7 +13,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginController controller = Get.put(LoginController());
+    final RegisterController controller = Get.put(RegisterController());
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -49,7 +49,7 @@ class RegisterPage extends StatelessWidget {
                               top: 43, right: 24, left: 24, bottom: 0),
                           child: CustomTextField(
                             hintText: 'Username',
-                            controller: controller.emailController,
+                            controller: controller.usernameController,
                             leadingIconPath: 'assets/icons/account.png',
                           ),
                         ),
@@ -72,6 +72,16 @@ class RegisterPage extends StatelessWidget {
                             leadingIconPath: 'assets/icons/lock.png',
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 20, right: 24, left: 24, bottom: 0),
+                          child: CustomTextField(
+                            hintText: 'Confirm Password',
+                            controller: controller.confirmPasswordController,
+                            obscureText: true,
+                            leadingIconPath: 'assets/icons/lock.png',
+                          ),
+                        ),
                         const SizedBox(height: 20),
                         SizedBox(
                           width: 325,
@@ -84,11 +94,10 @@ class RegisterPage extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              // controller.login();
-                              Get.toNamed(AppRoutesNamed.pageLogin);
+                              controller.createUser();
                             },
                             child: Text(
-                              "Sign In",
+                              "Register",
                               style: GoogleFonts.dmSans(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -114,7 +123,7 @@ class RegisterPage extends StatelessWidget {
                               Get.toNamed(AppRoutesNamed.pageLogin);
                             },
                             child: Text(
-                              "Sign In with Google",
+                              "Register with Google",
                               style: GoogleFonts.dmSans(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -122,6 +131,44 @@ class RegisterPage extends StatelessWidget {
                               ),
                             ),
                           ),
+                        ),
+                        SizedBox(height: 20,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Atau',
+                              style: GoogleFonts.dmSans(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(width: 2),
+                            InkWell(
+                              onTap: () {
+                                controller.navigateToLogin();
+                              },
+                              child: Text(
+                                'masuk',
+                                style: GoogleFonts.dmSans(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 12,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 2),
+                            Text(
+                              'sekarang jika belum memiliki akun',
+                              style: GoogleFonts.dmSans(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+
                         ),
                         const SizedBox(height: 52),
                         Text(
