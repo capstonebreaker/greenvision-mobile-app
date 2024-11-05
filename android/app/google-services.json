@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "295350347304",
+    "project_id": "green-vision-3ca97",
+    "storage_bucket": "green-vision-3ca97.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295350347304:android:4f07e0e5250d2cf438f71d",
+        "android_client_info": {
+          "package_name": "com.example.green_vision"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr0KeDx9jZXh7MI4vfgtSuhE_7p0NViLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
