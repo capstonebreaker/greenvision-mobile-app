@@ -74,8 +74,7 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              // controller.login();
-                              Get.toNamed(AppRoutesNamed.pageHome);
+                              controller.login();
                             },
                             child: Text(
                               "Sign In",
