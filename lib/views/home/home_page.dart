@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
 import 'package:green_vision/shared/widgets/buttom_nav_bar.dart';
+import 'package:lottie/lottie.dart';
+
+import '../../controller/weather_controller.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final WeatherController weatherController = Get.put(WeatherController());
 
   @override
   Widget build(BuildContext context) {
@@ -62,86 +66,89 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 46.5,
                 ),
-                // Container(
-                //   width: 340,
-                //   height: 121,
-                //   decoration: BoxDecoration(
-                //     color: AppColorsDark.aksen,
-                //     borderRadius: BorderRadius.circular(
-                //         25), // Setting the border radius here
-                //   ),
-                //   child: Padding(
-                //     padding: EdgeInsets.only(
-                //         top: 22, bottom: 21, right: 32.5, left: 32.5),
-                //     child: Obx(() {
-                //       final weather = weatherController.weather.value;
-                //
-                //       if (weather != null) {
-                //         return Row(
-                //           children: [
-                //             Column(
-                //               crossAxisAlignment:
-                //               CrossAxisAlignment.start,
-                //               children: [
-                //                 // Display dynamic current temperature
-                //                 Text(
-                //                   '${weather.temperature}°', // Rounded to 1 decimal
-                //                   style: GoogleFonts.sora(
-                //                       fontSize: 30,
-                //                       fontWeight: FontWeight.normal,
-                //                       color: Colors.white),
-                //                 ),
-                //                 // Display high and low temperatures
-                //                 Text(
-                //                   'H:${weather.highTemperature}°  L:${weather.lowTemperature}°',
-                //                   style: GoogleFonts.sora(
-                //                       fontSize: 12,
-                //                       fontWeight: FontWeight.normal,
-                //                       color: Colors.white),
-                //                 ),
-                //                 // Display city name
-                //                 Text(
-                //                   weather.cityName,
-                //                   style: GoogleFonts.sora(
-                //                       fontSize: 12,
-                //                       fontWeight: FontWeight.normal,
-                //                       color: Colors.white),
-                //                 ),
-                //               ],
-                //             ),
-                //             SizedBox(
-                //               width: 80,
-                //             ),
-                //             Column(
-                //               mainAxisAlignment: MainAxisAlignment.center,
-                //               children: [
-                //                 Container(
-                //                   width: 69,
-                //                   height: 54,
-                //                   // Display the weather animation based on the main condition
-                //                   child: Lottie.asset(weatherController
-                //                       .getWeatherAnimation(
-                //                       weather.mainCondition)),
-                //                 ),
-                //               ],
-                //             )
-                //           ],
-                //         );
-                //       } else if (weatherController
-                //           .errorMessage.value.isNotEmpty) {
-                //         return Text(
-                //           weatherController.errorMessage.value,
-                //           style: GoogleFonts.sora(
-                //               fontSize: 12,
-                //               fontWeight: FontWeight.normal,
-                //               color: Colors.red),
-                //         );
-                //       } else {
-                //         return const CircularProgressIndicator(); // Loading state
-                //       }
-                //     }),
-                //   ),
-                // ),
+                Container(
+                  width: 340,
+                  height: 121,
+                  decoration: BoxDecoration(
+                    color: AppColorsDark.aksen,
+                    borderRadius: BorderRadius.circular(
+                        25), // Setting the border radius here
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: 22, bottom: 21, right: 32.5, left: 32.5),
+                    child: Obx(() {
+                      final weather = weatherController.weather.value;
+
+                      if (weather != null) {
+                        return Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                // Display dynamic current temperature
+                                Text(
+                                  '${weather.temperature}°', // Rounded to 1 decimal
+                                  style: GoogleFonts.sora(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white),
+                                ),
+                                // Display high and low temperatures
+                                Text(
+                                  'H:${weather.highTemperature}°  L:${weather.lowTemperature}°',
+                                  style: GoogleFonts.sora(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white),
+                                ),
+                                // Display city name
+                                Text(
+                                  weather.cityName,
+                                  style: GoogleFonts.sora(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 80,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 69,
+                                  height: 54,
+                                  // Display the weather animation based on the main condition
+                                  child: Lottie.asset(weatherController
+                                      .getWeatherAnimation(
+                                      weather.mainCondition)),
+                                ),
+                              ],
+                            )
+                          ],
+                        );
+                      } else if (weatherController
+                          .errorMessage.value.isNotEmpty) {
+                        return Text(
+                          weatherController.errorMessage.value,
+                          style: GoogleFonts.sora(
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.red),
+                        );
+                      } else {
+                        return const CircularProgressIndicator(); // Loading state
+                      }
+                    }),
+                  ),
+                ),
+                SizedBox(
+                  height: 46.5,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

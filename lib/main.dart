@@ -13,7 +13,6 @@ void main() async {
 
   runApp(const MyApp(
     initialRoutes: '/page-get-started',
-
   ));
 }
 
