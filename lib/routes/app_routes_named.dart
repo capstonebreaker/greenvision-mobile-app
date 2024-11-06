@@ -4,4 +4,5 @@ class AppRoutesNamed {
   static const pageLogin = '/page-login';
   static const pageHome = '/page-home';
   static const pageComunity = '/page-comunity';
+  static const pageChatBot = '/page-chat-bot';
 }

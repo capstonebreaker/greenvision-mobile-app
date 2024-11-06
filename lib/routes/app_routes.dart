@@ -6,6 +6,8 @@ import 'package:green_vision/views/home/home_page.dart';
 import 'package:green_vision/views/login/login_page.dart';
 import 'package:green_vision/views/register/register_page.dart';
 
+import '../views/chat_bot/chat_bot_page.dart';
+
 class AppRoutes {
   static final routes = [
     GetPage(name: AppRoutesNamed.pageGetStarted, page: () => GetStartedScreen()),
@@ -13,5 +15,6 @@ class AppRoutes {
     GetPage(name: AppRoutesNamed.pageLogin, page: () => LoginPage()),
     GetPage(name: AppRoutesNamed.pageHome, page: () => HomePage()),
     GetPage(name: AppRoutesNamed.pageComunity, page: () => ComunityPage()),
+    GetPage(name: AppRoutesNamed.pageChatBot, page: () => ChatBotPage()),
   ];
 }

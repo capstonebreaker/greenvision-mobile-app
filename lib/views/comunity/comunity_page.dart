@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
+import 'package:green_vision/routes/app_routes_named.dart';
 import 'package:green_vision/shared/widgets/buttom_nav_bar.dart';
 
 class ComunityPage extends StatelessWidget {
@@ -10,7 +13,9 @@ class ComunityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(AppRoutesNamed.pageChatBot);
+          },
           child: Text(
             "AI",
             style: GoogleFonts.dmSans(fontWeight: FontWeight.bold,
