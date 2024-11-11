@@ -138,7 +138,7 @@ class _ChatPageState extends State<ChatBotPage> {
                             offset: const Offset(0, 3),
                           ),
                         ],
-                        color: (_chatHistory[index]["isSender"] ? AppColorsDark.third : AppColorsDark.third),
+                        color: (_chatHistory[index]["isSender"] ? AppColorsDark.third : Colors.grey),
                       ),
                       padding: const EdgeInsets.all(16),
                       child: _chatHistory[index]["isImage"]

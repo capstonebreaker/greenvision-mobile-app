@@ -43,7 +43,7 @@ class WeatherController extends GetxController {
       case 'rain':
       case 'drizzle':
       case 'shower rain':
-        return 'assets/json/rain.json';
+        return 'assets/json/rainy.json';
       case 'thunderstorm':
         return 'assets/json/thunder.json';
       case 'clear':
