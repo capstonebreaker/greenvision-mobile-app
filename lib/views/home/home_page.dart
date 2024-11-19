@@ -14,7 +14,7 @@
     @override
     Widget build(BuildContext context) {
       return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColorsLight.primary,
         body: SingleChildScrollView(
           child: Padding(
             padding:
@@ -187,7 +187,7 @@
                             width: 340,
                             height: 100,
                             decoration: BoxDecoration(
-                              color: AppColorsLight.aksen,
+                              color: AppColorsLight.cardPrimary,
                               borderRadius: BorderRadius.circular(
                                   8), // Setting the border radius here
                             ),
@@ -300,7 +300,7 @@
                             width: 340,
                             height: 100,
                             decoration: BoxDecoration(
-                              color: AppColorsLight.aksen,
+                              color: AppColorsLight.cardPrimary,
                               borderRadius: BorderRadius.circular(
                                   8),
                             ),
@@ -414,7 +414,7 @@
                             width: 340,
                             height: 100,
                             decoration: BoxDecoration(
-                              color: AppColorsLight.aksen,
+                              color: AppColorsLight.cardPrimary,
                               borderRadius: BorderRadius.circular(
                                   8),
                             ),
