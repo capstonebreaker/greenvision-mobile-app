@@ -14,7 +14,7 @@
     @override
     Widget build(BuildContext context) {
       return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
             padding:
@@ -24,10 +24,13 @@
                 children: [
                   Row(
                     children: [
-                      Container(
-                          height: 48,
-                          width: 49,
-                          child: Image.asset('assets/images/avatar/avatar.png')),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, ),
+                        child: Container(
+                            height: 48,
+                            width: 49,
+                            child: Image.asset('assets/images/avatar/avatar.png')),
+                      ),
                       SizedBox(
                         width: 16,
                       ),
@@ -39,7 +42,7 @@
                             "Hello, Welcome  🎉",
                             style: GoogleFonts.dmSans(
                                 fontSize: 14,
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
@@ -49,7 +52,7 @@
                             "Loki Laufeyson",
                             style: GoogleFonts.dmSans(
                                 fontSize: 20,
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           )
                         ],
@@ -58,10 +61,18 @@
                         width: 100,
                       ),
                       Container(
-                          alignment: Alignment.center,
-                          width: 20,
-                          height: 20,
-                          child: Image.asset('assets/icons/notification.png'))
+                        alignment: Alignment.center,
+                        width: 20,
+                        height: 20,
+                        child: ColorFiltered(
+                          colorFilter: const ColorFilter.mode(
+                            Colors.black,
+                            BlendMode.srcIn,
+                          ),
+                          child: Image.asset('assets/icons/notification.png'),
+                        ),
+                      )
+
                     ],
                   ),
                   SizedBox(
@@ -71,7 +82,7 @@
                     width: 340,
                     height: 121,
                     decoration: BoxDecoration(
-                      color: AppColorsDark.aksen,
+                      color: AppColorsLight.aksen,
                       borderRadius: BorderRadius.circular(
                           25), // Setting the border radius here
                     ),
@@ -94,7 +105,7 @@
                                     style: GoogleFonts.sora(
                                         fontSize: 30,
                                         fontWeight: FontWeight.normal,
-                                        color: Colors.white),
+                                        color: Colors.black),
                                   ),
                                   // Display high and low temperatures
                                   Text(
@@ -102,7 +113,7 @@
                                     style: GoogleFonts.sora(
                                         fontSize: 12,
                                         fontWeight: FontWeight.normal,
-                                        color: Colors.white),
+                                        color: Colors.black),
                                   ),
                                   // Display city name
                                   Text(
@@ -110,7 +121,7 @@
                                     style: GoogleFonts.sora(
                                         fontSize: 12,
                                         fontWeight: FontWeight.normal,
-                                        color: Colors.white),
+                                        color: Colors.black),
                                   ),
                                 ],
                               ),
@@ -149,16 +160,20 @@
                   ),
                   SizedBox(
                     height: 46.5,
+
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        'Education',
-                        style: GoogleFonts.dmSans(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.white),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          'Education',
+                          style: GoogleFonts.dmSans(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.black),
+                        ),
                       ),
                     ],
                   ),
@@ -166,274 +181,344 @@
                     height: 19,
                   ),
                   Container(
-                      height: 247,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
+                      child: Column(
                         children: [
                           Container(
-                            width: 154,
-                            height: 187,
+                            width: 340,
+                            height: 100,
                             decoration: BoxDecoration(
-                              color: AppColorsDark.aksen,
+                              color: AppColorsLight.aksen,
                               borderRadius: BorderRadius.circular(
                                   8), // Setting the border radius here
                             ),
                             child: Obx(() {
                               if (articleController.isLoading.value) {
-                                return Center(child: CircularProgressIndicator());
+                                return const Center(
+                                  child: CircularProgressIndicator(), // Loading spinner
+                                );
                               } else if (articleController.errorMessage.isNotEmpty) {
                                 return Center(
                                   child: Text(
                                     articleController.errorMessage.value,
-                                    style: GoogleFonts.sora(
+                                    style: const TextStyle(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.normal,
                                       color: Colors.red,
                                     ),
                                   ),
                                 );
-                              } else if (articleController.articles.length < 2) {
-                                return Center(child: Text('Not enough articles found.'));
+                              } else if (articleController.articles.isEmpty) {
+                                return const Center(
+                                  child: Text('No articles found.'),
+                                );
                               } else {
-                                final article = articleController.articles[1]; // Access the second article
+                                final article = articleController.articles[2]; // Mengambil artikel pertama dari API
                                 return Container(
-                                  width: 154,
-                                  height: 187,
-                                  margin: EdgeInsets.only(right: 16),
+                                  width: 325,
+                                  height: 110,
                                   decoration: BoxDecoration(
-                                    color: AppColorsDark.aksen,
-                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.white.withOpacity(0),
+                                        offset: const Offset(-8.0, -4.0),
+                                        blurRadius: 16.0,
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        offset: const Offset(8.0, 4.0),
+                                        blurRadius: 16.0,
+                                      ),
+                                    ],
+                                    color: const Color(0xFFEBEFF3),
+                                    borderRadius: BorderRadius.circular(12.0),
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 9, bottom: 0, right: 6.5, left: 6.5),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 141,
-                                          height: 94,
-                                          child: Image.network(
-                                            article['img'] ?? 'https://via.placeholder.com/141x94',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        SizedBox(height: 5),
-                                        Text(
-                                          article['title'] ?? 'No Title',
-                                          style: GoogleFonts.sora(
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          article['deskripsi'] ?? 'No description available.',
-                                          style: GoogleFonts.sora(
-                                            fontSize: 6,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        SizedBox(height: 17),
-                                        Container(
-                                          height: 14,
-                                          width: 100,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: AppColorsDark.third,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10),
-                                              ),
-                                            ),
-                                            onPressed: () {},
-                                            child: Text(
-                                              "Baca Selengkapnya",
-                                              style: GoogleFonts.dmSans(
-                                                fontSize: 5,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-                            })
-
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Container(
-                            width: 154,
-                            height: 187,
-                            decoration: BoxDecoration(
-                              color: AppColorsDark.aksen,
-                              borderRadius: BorderRadius.circular(
-                                  8), // Setting the border radius here
-                            ),
-                            child: Obx(() {
-                              if (articleController.isLoading.value) {
-                                return Center(child: CircularProgressIndicator());
-                              } else if (articleController.errorMessage.isNotEmpty) {
-                                return Center(
-                                  child: Text(
-                                    articleController.errorMessage.value,
-                                    style: GoogleFonts.sora(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                );
-                              } else if (articleController.articles.length < 2) {
-                                return Center(child: Text('Not enough articles found.'));
-                              } else {
-                                final article = articleController.articles[4]; // Access the second article
-                                return Container(
-                                  width: 154,
-                                  height: 187,
-                                  margin: EdgeInsets.only(right: 16),
-                                  decoration: BoxDecoration(
-                                    color: AppColorsDark.aksen,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 9, bottom: 0, right: 6.5, left: 6.5),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 141,
-                                          height: 94,
-                                          child: Image.network(
-                                            article['img'] ?? 'https://via.placeholder.com/141x94',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        SizedBox(height: 5),
-                                        Text(
-                                          article['title'] ?? 'No Title',
-                                          style: GoogleFonts.sora(
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          article['deskripsi'] ?? 'No description available.',
-                                          style: GoogleFonts.sora(
-                                            fontSize: 6,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        SizedBox(height: 17),
-                                        Container(
-                                          height: 14,
-                                          width: 100,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: AppColorsDark.third,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10),
-                                              ),
-                                            ),
-                                            onPressed: () {},
-                                            child: Text(
-                                              "Baca Selengkapnya",
-                                              style: GoogleFonts.dmSans(
-                                                fontSize: 5,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-                            })
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Container(
-                            width: 154,
-                            height: 187,
-                            decoration: BoxDecoration(
-                              color: AppColorsDark.aksen,
-                              borderRadius: BorderRadius.circular(
-                                  8), // Setting the border radius here
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  top: 9, bottom: 0, right: 6.5, left: 6.5),
-                              child: Row(
-                                children: [
-                                  Column(
+                                  padding: const EdgeInsets.all(19.0),
+                                  child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        width: 141,
-                                        height: 94,
-                                        child: Image.asset(
-                                            'assets/images/news/image1.png'),
+                                      // Gambar dari API
+                                      Center(
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(15.0),
+                                          child: Image.network(
+                                            article['img'] ?? 'https://via.placeholder.com/75',
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        '100 Hektare Lahan Pertanian di \nDenpasar Lenyap Akibat Alih \nFungsi Lahan',
-                                        style: GoogleFonts.sora(
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        'Denpasar - Sebanyak 100 hektare (ha) \nlahan pertanian di Kota Denpasar \nberkurang pada 2023. Hal itu diakibatkan \noleh masifnya alih fungsi lahan',
-                                        style: GoogleFonts.sora(
-                                            fontSize: 6,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 17,
-                                      ),
-                                      Container(
-                                        height: 14,
-                                        width: 100,
-                                        child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                AppColorsDark.third,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                    BorderRadius.circular(10))),
-                                            onPressed: () {},
-                                            child: Text(
-                                              "Baca Selengkapnya",
-                                              style: GoogleFonts.dmSans(
-                                                  fontSize: 5,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.white),
-                                            )),
+                                      const SizedBox(width: 14.0),
+                                      // Teks di sebelah kanan gambar
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              article['title'] ?? 'No Title',
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black87,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              article['deskripsi'] ?? 'No description available.',
+                                              style: const TextStyle(
+                                                fontSize: 7,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            GestureDetector(
+                                              onTap: () {
+
+                                              },
+                                              child: const Text(
+                                                'Baca selengkapnya >',
+                                                style: TextStyle(
+                                                  fontSize: 8,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
+                                );
+                              }
+                            }),
+
+                          ),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Container(
+                            width: 340,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: AppColorsLight.aksen,
+                              borderRadius: BorderRadius.circular(
+                                  8),
                             ),
+                            child: Obx(() {
+                              if (articleController.isLoading.value) {
+                                return const Center(
+                                  child: CircularProgressIndicator(), // Loading spinner
+                                );
+                              } else if (articleController.errorMessage.isNotEmpty) {
+                                return Center(
+                                  child: Text(
+                                    articleController.errorMessage.value,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                );
+                              } else if (articleController.articles.isEmpty) {
+                                return const Center(
+                                  child: Text('No articles found.'),
+                                );
+                              } else {
+                                final article = articleController.articles[2]; // Mengambil artikel pertama dari API
+                                return Container(
+                                  width: 325,
+                                  height: 110,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.white.withOpacity(0),
+                                        offset: const Offset(-8.0, -4.0),
+                                        blurRadius: 16.0,
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        offset: const Offset(8.0, 4.0),
+                                        blurRadius: 16.0,
+                                      ),
+                                    ],
+                                    color: const Color(0xFFEBEFF3),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  padding: const EdgeInsets.all(19.0),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      // Gambar dari API
+                                      Center(
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(15.0),
+                                          child: Image.network(
+                                            article['img'] ?? 'https://via.placeholder.com/75',
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 14.0),
+                                      // Teks di sebelah kanan gambar
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              article['title'] ?? 'No Title',
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black87,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              article['deskripsi'] ?? 'No description available.',
+                                              style: const TextStyle(
+                                                fontSize: 7,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            GestureDetector(
+                                              onTap: () {
+
+                                              },
+                                              child: const Text(
+                                                'Baca selengkapnya >',
+                                                style: TextStyle(
+                                                  fontSize: 8,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            }),
+
+                          ),
+
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Container(
+                            width: 340,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: AppColorsLight.aksen,
+                              borderRadius: BorderRadius.circular(
+                                  8),
+                            ),
+                            child: Obx(() {
+                              if (articleController.isLoading.value) {
+                                return const Center(
+                                  child: CircularProgressIndicator(), // Loading spinner
+                                );
+                              } else if (articleController.errorMessage.isNotEmpty) {
+                                return Center(
+                                  child: Text(
+                                    articleController.errorMessage.value,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                );
+                              } else if (articleController.articles.isEmpty) {
+                                return const Center(
+                                  child: Text('No articles found.'),
+                                );
+                              } else {
+                                final article = articleController.articles[2]; // Mengambil artikel pertama dari API
+                                return Container(
+                                  width: 325,
+                                  height: 110,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.white.withOpacity(0),
+                                        offset: const Offset(-8.0, -4.0),
+                                        blurRadius: 16.0,
+                                      ),
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        offset: const Offset(8.0, 4.0),
+                                        blurRadius: 16.0,
+                                      ),
+                                    ],
+                                    color: const Color(0xFFEBEFF3),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  padding: const EdgeInsets.all(19.0),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      // Gambar dari API
+                                      Center(
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(15.0),
+                                          child: Image.network(
+                                            article['img'] ?? 'https://via.placeholder.com/75',
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 14.0),
+                                      // Teks di sebelah kanan gambar
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              article['title'] ?? 'No Title',
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black87,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              article['deskripsi'] ?? 'No description available.',
+                                              style: const TextStyle(
+                                                fontSize: 7,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            GestureDetector(
+                                              onTap: () {
+
+                                              },
+                                              child: const Text(
+                                                'Baca selengkapnya >',
+                                                style: TextStyle(
+                                                  fontSize: 8,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            }),
+
                           ),
                         ],
                       )),
