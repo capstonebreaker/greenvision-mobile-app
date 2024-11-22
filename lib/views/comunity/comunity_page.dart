@@ -22,8 +22,8 @@ class ComunityPage extends StatelessWidget {
             color: AppColorsLight.primary)
             ,
           ),
-      backgroundColor: AppColorsDark.third,),
-      backgroundColor: Colors.black,
+      backgroundColor: AppColorsLight.third,),
+      backgroundColor: AppColorsLight.primary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -55,10 +55,19 @@ class ComunityPage extends StatelessWidget {
                           width: 319,
                           height: 317,
                           decoration: BoxDecoration(
-                              color: AppColorsDark.aksen,
-                              borderRadius: BorderRadius.circular(25)),
+                            color: AppColorsLight.aksen,
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                offset: Offset(0, 4),
+                                blurRadius: 10,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(14.0),
                             child: Column(
                               children: [
                                 Column(
@@ -91,14 +100,14 @@ class ComunityPage extends StatelessWidget {
                                                         fontSize: 11,
                                                         fontWeight:
                                                             FontWeight.w400,
-                                                        color: Colors.white)),
+                                                        color: Colors.black)),
                                                 SizedBox(width: 10),
                                                 Text("•",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 15,
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        color: Colors.white)),
+                                                        color: Colors.black)),
                                                 SizedBox(
                                                   width: 10,
                                                 ),
@@ -107,14 +116,14 @@ class ComunityPage extends StatelessWidget {
                                                         fontSize: 8,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        color: Colors.grey)),
+                                                        color: Colors.black87)),
                                               ],
                                             ),
                                             Text("2 hr ago",
                                                 style: GoogleFonts.dmSans(
                                                     fontSize: 6,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Colors.grey)),
+                                                    color: Colors.black87)),
                                           ],
                                         ),
                                       ],
@@ -131,15 +140,18 @@ class ComunityPage extends StatelessWidget {
                                         style: GoogleFonts.dmSans(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                            color: AppColorsLight.teksPrimary)),
+                                    SizedBox(
+                                      height:10,
+                                    ),
                                     Text(
                                         "Tips for designing and building a consistent design system. Without doubt, I \nget asked about design systems more than anything else. So, having spent the \nmajority of the past few years thinking about how to...",
                                         style: GoogleFonts.dmSans(
                                             fontSize: 7,
                                             fontWeight: FontWeight.normal,
-                                            color: Colors.grey)),
+                                            color: AppColorsLight.teksThird)),
                                     SizedBox(
-                                      height: 41,
+                                      height: 30,
                                     ),
                                     Row(
                                       children: [
@@ -216,10 +228,19 @@ class ComunityPage extends StatelessWidget {
                           width: 319,
                           height: 317,
                           decoration: BoxDecoration(
-                              color: AppColorsDark.aksen,
-                              borderRadius: BorderRadius.circular(25)),
+                            color: AppColorsLight.aksen,
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                offset: Offset(0, 4),
+                                blurRadius: 10,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(14.0),
                             child: Column(
                               children: [
                                 Column(
@@ -241,25 +262,25 @@ class ComunityPage extends StatelessWidget {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                              MainAxisAlignment.start,
                                               children: [
                                                 Text("BumsYa ",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 11,
                                                         fontWeight:
-                                                            FontWeight.w400,
-                                                        color: Colors.white)),
+                                                        FontWeight.w400,
+                                                        color: Colors.black)),
                                                 SizedBox(width: 10),
                                                 Text("•",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 15,
                                                         fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white)),
+                                                        FontWeight.bold,
+                                                        color: Colors.black)),
                                                 SizedBox(
                                                   width: 10,
                                                 ),
@@ -267,15 +288,15 @@ class ComunityPage extends StatelessWidget {
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 8,
                                                         fontWeight:
-                                                            FontWeight.normal,
-                                                        color: Colors.grey)),
+                                                        FontWeight.normal,
+                                                        color: Colors.black87)),
                                               ],
                                             ),
                                             Text("2 hr ago",
                                                 style: GoogleFonts.dmSans(
                                                     fontSize: 6,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Colors.grey)),
+                                                    color: Colors.black87)),
                                           ],
                                         ),
                                       ],
@@ -292,15 +313,18 @@ class ComunityPage extends StatelessWidget {
                                         style: GoogleFonts.dmSans(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                            color: AppColorsLight.teksPrimary)),
+                                    SizedBox(
+                                      height:10,
+                                    ),
                                     Text(
                                         "Tips for designing and building a consistent design system. Without doubt, I \nget asked about design systems more than anything else. So, having spent the \nmajority of the past few years thinking about how to...",
                                         style: GoogleFonts.dmSans(
                                             fontSize: 7,
                                             fontWeight: FontWeight.normal,
-                                            color: Colors.grey)),
+                                            color: AppColorsLight.teksThird)),
                                     SizedBox(
-                                      height: 41,
+                                      height: 30,
                                     ),
                                     Row(
                                       children: [
@@ -377,10 +401,19 @@ class ComunityPage extends StatelessWidget {
                           width: 319,
                           height: 317,
                           decoration: BoxDecoration(
-                              color: AppColorsDark.aksen,
-                              borderRadius: BorderRadius.circular(25)),
+                            color: AppColorsLight.aksen,
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                offset: Offset(0, 4),
+                                blurRadius: 10,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(14.0),
                             child: Column(
                               children: [
                                 Column(
@@ -402,25 +435,25 @@ class ComunityPage extends StatelessWidget {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                              MainAxisAlignment.start,
                                               children: [
                                                 Text("BumsYa ",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 11,
                                                         fontWeight:
-                                                            FontWeight.w400,
-                                                        color: Colors.white)),
+                                                        FontWeight.w400,
+                                                        color: Colors.black)),
                                                 SizedBox(width: 10),
                                                 Text("•",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 15,
                                                         fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white)),
+                                                        FontWeight.bold,
+                                                        color: Colors.black)),
                                                 SizedBox(
                                                   width: 10,
                                                 ),
@@ -428,15 +461,15 @@ class ComunityPage extends StatelessWidget {
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 8,
                                                         fontWeight:
-                                                            FontWeight.normal,
-                                                        color: Colors.grey)),
+                                                        FontWeight.normal,
+                                                        color: Colors.black87)),
                                               ],
                                             ),
                                             Text("2 hr ago",
                                                 style: GoogleFonts.dmSans(
                                                     fontSize: 6,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Colors.grey)),
+                                                    color: Colors.black87)),
                                           ],
                                         ),
                                       ],
@@ -453,15 +486,18 @@ class ComunityPage extends StatelessWidget {
                                         style: GoogleFonts.dmSans(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                            color: AppColorsLight.teksPrimary)),
+                                    SizedBox(
+                                      height:10,
+                                    ),
                                     Text(
                                         "Tips for designing and building a consistent design system. Without doubt, I \nget asked about design systems more than anything else. So, having spent the \nmajority of the past few years thinking about how to...",
                                         style: GoogleFonts.dmSans(
                                             fontSize: 7,
                                             fontWeight: FontWeight.normal,
-                                            color: Colors.grey)),
+                                            color: AppColorsLight.teksThird)),
                                     SizedBox(
-                                      height: 41,
+                                      height: 30,
                                     ),
                                     Row(
                                       children: [
@@ -538,10 +574,19 @@ class ComunityPage extends StatelessWidget {
                           width: 319,
                           height: 317,
                           decoration: BoxDecoration(
-                              color: AppColorsDark.aksen,
-                              borderRadius: BorderRadius.circular(25)),
+                            color: AppColorsLight.aksen,
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                offset: Offset(0, 4),
+                                blurRadius: 10,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(14.0),
                             child: Column(
                               children: [
                                 Column(
@@ -563,25 +608,25 @@ class ComunityPage extends StatelessWidget {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                              MainAxisAlignment.start,
                                               children: [
                                                 Text("BumsYa ",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 11,
                                                         fontWeight:
-                                                            FontWeight.w400,
-                                                        color: Colors.white)),
+                                                        FontWeight.w400,
+                                                        color: Colors.black)),
                                                 SizedBox(width: 10),
                                                 Text("•",
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 15,
                                                         fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white)),
+                                                        FontWeight.bold,
+                                                        color: Colors.black)),
                                                 SizedBox(
                                                   width: 10,
                                                 ),
@@ -589,15 +634,15 @@ class ComunityPage extends StatelessWidget {
                                                     style: GoogleFonts.dmSans(
                                                         fontSize: 8,
                                                         fontWeight:
-                                                            FontWeight.normal,
-                                                        color: Colors.grey)),
+                                                        FontWeight.normal,
+                                                        color: Colors.black87)),
                                               ],
                                             ),
                                             Text("2 hr ago",
                                                 style: GoogleFonts.dmSans(
                                                     fontSize: 6,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Colors.grey)),
+                                                    color: Colors.black87)),
                                           ],
                                         ),
                                       ],
@@ -614,15 +659,18 @@ class ComunityPage extends StatelessWidget {
                                         style: GoogleFonts.dmSans(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                            color: AppColorsLight.teksPrimary)),
+                                    SizedBox(
+                                      height:10,
+                                    ),
                                     Text(
                                         "Tips for designing and building a consistent design system. Without doubt, I \nget asked about design systems more than anything else. So, having spent the \nmajority of the past few years thinking about how to...",
                                         style: GoogleFonts.dmSans(
                                             fontSize: 7,
                                             fontWeight: FontWeight.normal,
-                                            color: Colors.grey)),
+                                            color: AppColorsLight.teksThird)),
                                     SizedBox(
-                                      height: 41,
+                                      height: 30,
                                     ),
                                     Row(
                                       children: [

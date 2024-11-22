@@ -11,8 +11,8 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CurvedNavigationBar(
       buttonBackgroundColor: AppColorsLight.third,
-      backgroundColor: Colors.white,
-      color: AppColorsLight.aksen, // Change this to your desired active color
+      backgroundColor: AppColorsLight.primary,
+      color: Colors.white, // Change this to your desired active color
       height: 60.0,
       index: _getCurrentIndex(),
       onTap: (index) {
