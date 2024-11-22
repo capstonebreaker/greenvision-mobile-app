@@ -83,8 +83,15 @@
                     height: 121,
                     decoration: BoxDecoration(
                       color: AppColorsLight.aksen,
-                      borderRadius: BorderRadius.circular(
-                          25), // Setting the border radius here
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          offset: Offset(0, 4),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                        ),
+                      ],
                     ),
                     child: Padding(
                       padding: EdgeInsets.only(
@@ -96,8 +103,7 @@
                           return Row(
                             children: [
                               Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // Display dynamic current temperature
                                   Text(
@@ -143,8 +149,7 @@
                               )
                             ],
                           );
-                        } else if (weatherController
-                            .errorMessage.value.isNotEmpty) {
+                        } else if (weatherController.errorMessage.value.isNotEmpty) {
                           return Text(
                             weatherController.errorMessage.value,
                             style: GoogleFonts.sora(
@@ -211,7 +216,7 @@
                                   child: Text('No articles found.'),
                                 );
                               } else {
-                                final article = articleController.articles[2]; // Mengambil artikel pertama dari API
+                                final article = articleController.articles[0];
                                 return Container(
                                   width: 325,
                                   height: 110,
@@ -224,7 +229,7 @@
                                       ),
                                       BoxShadow(
                                         color: Colors.black.withOpacity(0.2),
-                                        offset: const Offset(8.0, 4.0),
+                                        offset: const Offset(4.0, 2.0),
                                         blurRadius: 16.0,
                                       ),
                                     ],
@@ -324,7 +329,7 @@
                                   child: Text('No articles found.'),
                                 );
                               } else {
-                                final article = articleController.articles[2]; // Mengambil artikel pertama dari API
+                                final article = articleController.articles[0]; // Mengambil artikel pertama dari API
                                 return Container(
                                   width: 325,
                                   height: 110,
@@ -438,7 +443,7 @@
                                   child: Text('No articles found.'),
                                 );
                               } else {
-                                final article = articleController.articles[2]; // Mengambil artikel pertama dari API
+                                final article = articleController.articles[0]; // Mengambil artikel pertama dari API
                                 return Container(
                                   width: 325,
                                   height: 110,
