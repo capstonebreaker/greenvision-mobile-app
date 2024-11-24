@@ -37,8 +37,8 @@ class ComunityPage extends StatelessWidget {
                       "Comunity",
                       style: GoogleFonts.dmSans(
                           fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white),
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
                     ),
                   ),
                 ),
@@ -52,19 +52,23 @@ class ComunityPage extends StatelessWidget {
                     Stack(
                       children: [
                         Container(
-                          width: 319,
+                          width: 360,
                           height: 317,
                           decoration: BoxDecoration(
-                            color: AppColorsLight.aksen,
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 4),
-                                blurRadius: 10,
-                                spreadRadius: 2,
-                              ),
-                            ],
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColorsLight.primary,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 12.0,
+                                  offset: Offset(-8, -8),
+                                  color: Colors.white,
+                                ),
+                                BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4)
+                                )
+                              ]
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(14.0),
@@ -145,13 +149,13 @@ class ComunityPage extends StatelessWidget {
                                       height:10,
                                     ),
                                     Text(
-                                        "Tips for designing and building a consistent design system. Without doubt, I \nget asked about design systems more than anything else. So, having spent the \nmajority of the past few years thinking about how to...",
+                                        "Tips for designing and building a consistent design system. Without doubt, I get asked about design systems more than anything else. So, having spent the majority of the past few years thinking about how to...",
                                         style: GoogleFonts.dmSans(
                                             fontSize: 7,
                                             fontWeight: FontWeight.normal,
                                             color: AppColorsLight.teksThird)),
                                     SizedBox(
-                                      height: 30,
+                                      height: 20,
                                     ),
                                     Row(
                                       children: [
@@ -212,7 +216,7 @@ class ComunityPage extends StatelessWidget {
                           width: 319,
                           height: 145,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: AppColorsLight.primary,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(25),
                                   topRight: Radius.circular(25))),
@@ -225,19 +229,23 @@ class ComunityPage extends StatelessWidget {
                     Stack(
                       children: [
                         Container(
-                          width: 319,
+                          width: 360,
                           height: 317,
                           decoration: BoxDecoration(
-                            color: AppColorsLight.aksen,
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 4),
-                                blurRadius: 10,
-                                spreadRadius: 2,
-                              ),
-                            ],
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColorsLight.primary,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 12.0,
+                                  offset: Offset(-8, -8),
+                                  color: Colors.white,
+                                ),
+                                BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4)
+                                )
+                              ]
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(14.0),
@@ -318,13 +326,13 @@ class ComunityPage extends StatelessWidget {
                                       height:10,
                                     ),
                                     Text(
-                                        "Tips for designing and building a consistent design system. Without doubt, I \nget asked about design systems more than anything else. So, having spent the \nmajority of the past few years thinking about how to...",
+                                        "Tips for designing and building a consistent design system. Without doubt, I get asked about design systems more than anything else. So, having spent the majority of the past few years thinking about how to...",
                                         style: GoogleFonts.dmSans(
                                             fontSize: 7,
                                             fontWeight: FontWeight.normal,
                                             color: AppColorsLight.teksThird)),
                                     SizedBox(
-                                      height: 30,
+                                      height: 20,
                                     ),
                                     Row(
                                       children: [
@@ -385,7 +393,7 @@ class ComunityPage extends StatelessWidget {
                           width: 319,
                           height: 145,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: AppColorsLight.primary,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(25),
                                   topRight: Radius.circular(25))),
@@ -398,19 +406,23 @@ class ComunityPage extends StatelessWidget {
                     Stack(
                       children: [
                         Container(
-                          width: 319,
+                          width: 360,
                           height: 317,
                           decoration: BoxDecoration(
-                            color: AppColorsLight.aksen,
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 4),
-                                blurRadius: 10,
-                                spreadRadius: 2,
-                              ),
-                            ],
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColorsLight.primary,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 12.0,
+                                  offset: Offset(-8, -8),
+                                  color: Colors.white,
+                                ),
+                                BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4)
+                                )
+                              ]
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(14.0),
@@ -491,13 +503,13 @@ class ComunityPage extends StatelessWidget {
                                       height:10,
                                     ),
                                     Text(
-                                        "Tips for designing and building a consistent design system. Without doubt, I \nget asked about design systems more than anything else. So, having spent the \nmajority of the past few years thinking about how to...",
+                                        "Tips for designing and building a consistent design system. Without doubt, I get asked about design systems more than anything else. So, having spent the majority of the past few years thinking about how to...",
                                         style: GoogleFonts.dmSans(
                                             fontSize: 7,
                                             fontWeight: FontWeight.normal,
                                             color: AppColorsLight.teksThird)),
                                     SizedBox(
-                                      height: 30,
+                                      height: 20,
                                     ),
                                     Row(
                                       children: [
@@ -558,7 +570,7 @@ class ComunityPage extends StatelessWidget {
                           width: 319,
                           height: 145,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: AppColorsLight.primary,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(25),
                                   topRight: Radius.circular(25))),
@@ -571,19 +583,23 @@ class ComunityPage extends StatelessWidget {
                     Stack(
                       children: [
                         Container(
-                          width: 319,
+                          width: 360,
                           height: 317,
                           decoration: BoxDecoration(
-                            color: AppColorsLight.aksen,
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 4),
-                                blurRadius: 10,
-                                spreadRadius: 2,
-                              ),
-                            ],
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColorsLight.primary,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 12.0,
+                                  offset: Offset(-8, -8),
+                                  color: Colors.white,
+                                ),
+                                BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4)
+                                )
+                              ]
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(14.0),
@@ -664,13 +680,13 @@ class ComunityPage extends StatelessWidget {
                                       height:10,
                                     ),
                                     Text(
-                                        "Tips for designing and building a consistent design system. Without doubt, I \nget asked about design systems more than anything else. So, having spent the \nmajority of the past few years thinking about how to...",
+                                        "Tips for designing and building a consistent design system. Without doubt, I get asked about design systems more than anything else. So, having spent the majority of the past few years thinking about how to...",
                                         style: GoogleFonts.dmSans(
                                             fontSize: 7,
                                             fontWeight: FontWeight.normal,
                                             color: AppColorsLight.teksThird)),
                                     SizedBox(
-                                      height: 30,
+                                      height: 20,
                                     ),
                                     Row(
                                       children: [
@@ -731,7 +747,7 @@ class ComunityPage extends StatelessWidget {
                           width: 319,
                           height: 145,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: AppColorsLight.primary,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(25),
                                   topRight: Radius.circular(25))),

@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/controller/register_controller.dart';
 import 'package:green_vision/routes/app_routes_named.dart';
 
 import '../../constants/colors.dart';
-import '../../controller/login_controller.dart';
 import '../../shared/widgets/custom_text_field.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -16,7 +16,7 @@ class RegisterPage extends StatelessWidget {
     final RegisterController controller = Get.put(RegisterController());
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColorsLight.primary,
       body: Center(
         child: Column(
           children: [
@@ -29,16 +29,30 @@ class RegisterPage extends StatelessWidget {
               child: Image.asset('assets/logo/logo.png'),
             ),
             const SizedBox(
-              height: 81,
+              height: 61,
             ),
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                  color: AppColorsDark.aksen,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(45.0),
-                    topRight: Radius.circular(45.0),
-                  ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(45.0),
+                      topRight: Radius.circular(45.0),
+                    ),
+                    color: AppColorsLight.primary,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 12.0,
+                        offset: Offset(-8, -8),
+                        color: Colors.white,
+                        // inset: true
+                      ),
+                      BoxShadow(
+                        blurRadius: 12.0,
+                        offset: Offset(8, 8),
+                        color: Color(0xFFD4D4D4),
+                        // inset: true
+                      )
+                    ]
                 ),
                 child: ListView(
                   children: [
@@ -46,7 +60,7 @@ class RegisterPage extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 43, right: 24, left: 24, bottom: 0),
+                              top: 23, right: 24, left: 24, bottom: 0),
                           child: CustomTextField(
                             hintText: 'Username',
                             controller: controller.usernameController,
@@ -82,52 +96,78 @@ class RegisterPage extends StatelessWidget {
                             leadingIconPath: 'assets/icons/lock.png',
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 40),
                         SizedBox(
-                          width: 325,
+                          width: 360,
                           height: 48,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColorsDark.third,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                            onPressed: () {
+                          child: InkWell(
+                            onTap: () {
                               controller.createUser();
                             },
-                            child: Text(
-                              "Register",
-                              style: GoogleFonts.dmSans(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColorsLight.primary,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(-8, -8),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Sign Up",
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
-                          width: 325,
+                          width: 360,
                           height: 48,
-                          child: ElevatedButton(
-                            style: OutlinedButton.styleFrom(
-                              backgroundColor: AppColorsDark.aksen,
-                              side: const BorderSide(
-                                  color: AppColorsDark.third, width: 2),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                            onPressed: () {
+                          child: InkWell(
+                            onTap: () {
                               Get.toNamed(AppRoutesNamed.pageLogin);
                             },
-                            child: Text(
-                              "Register with Google",
-                              style: GoogleFonts.dmSans(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColorsLight.third,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(-8, -8),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Sign Up with Google",
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -137,11 +177,11 @@ class RegisterPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Atau',
+                              'Sudah punya akun?',
                               style: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 12,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             ),
                             SizedBox(width: 2),
@@ -158,17 +198,7 @@ class RegisterPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 2),
-                            Text(
-                              'sekarang jika belum memiliki akun',
-                              style: GoogleFonts.dmSans(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 12,
-                                color: Colors.white,
-                              ),
-                            ),
                           ],
-
                         ),
                         const SizedBox(height: 52),
                         Text(

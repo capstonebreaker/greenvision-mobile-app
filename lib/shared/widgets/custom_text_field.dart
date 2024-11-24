@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
 
@@ -20,48 +21,62 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      style: TextStyle(color: Colors.white), // Set text color to black
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: GoogleFonts.dmSans(
-          color: Colors.white, // Set hint text color
-          fontSize: 14, // Set hint text size
-          fontWeight: FontWeight.normal,
-        ), // Set hint text color
-        filled: true,
-        fillColor: AppColorsDark.aksen, // Background color of the text field
-        border: OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(10.0), // Border radius for rectangle
-          borderSide: BorderSide(color: Colors.grey), // Border color
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(10.0), // Border radius for focused state
-          borderSide:
-          BorderSide(color: Colors.blue), // Border color when focused
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(10.0), // Border radius for enabled state
-          borderSide:
-          BorderSide(color: Colors.white), // Border color when enabled
-        ),
-        prefixIcon: leadingIconPath != null
-            ? Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Image.asset(
-            leadingIconPath!,
-            height: 20, // Adjust height as needed
-            width: 20, // Adjust width as needed
+    return Container(
+      height: 55,
+      decoration: BoxDecoration(
+        color: AppColorsLight.primary,
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.white,
+            offset: Offset(-4, -4),
+            blurRadius: 8,
+            inset: true,
           ),
-        )
-            : null, // If no icon path provided, don't show any icon
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+          BoxShadow(
+            color: Color(0xFFD4D4D4),
+            offset: Offset(4, 4),
+            blurRadius: 8,
+            inset: true,
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          if (leadingIconPath != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Image.asset(
+                leadingIconPath!,
+                height: 20,
+                width: 20,
+                color: Colors.grey,
+              ),
+            ),
+          Expanded(
+            child: TextField(
+              controller: controller,
+              keyboardType: keyboardType,
+              obscureText: obscureText,
+              style: GoogleFonts.dmSans(
+                color: Colors.black,
+                fontSize: 14,
+              ),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: hintText,
+                hintStyle: GoogleFonts.dmSans(
+                  color: Colors.grey,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 14.0
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
