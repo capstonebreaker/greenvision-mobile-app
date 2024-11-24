@@ -1,9 +1,11 @@
-  import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+  import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
   import 'package:get/get.dart';
   import 'package:google_fonts/google_fonts.dart';
   import 'package:green_vision/constants/colors.dart';
   import 'package:green_vision/shared/widgets/buttom_nav_bar.dart';
   import 'package:lottie/lottie.dart';
+
 
   import '../../controller/article_controller.dart';
   import '../../controller/weather_controller.dart';
@@ -80,18 +82,22 @@
                   ),
                   Container(
                     width: 340,
-                    height: 121,
+                    height: 128,
                     decoration: BoxDecoration(
-                      color: AppColorsLight.aksen,
-                      borderRadius: BorderRadius.circular(25),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          offset: Offset(0, 4),
-                          blurRadius: 10,
-                          spreadRadius: 2,
-                        ),
-                      ],
+                        borderRadius: BorderRadius.circular(25),
+                        color: AppColorsLight.primary,
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 12.0,
+                            offset: Offset(-8, -8),
+                            color: Colors.white,
+                          ),
+                          BoxShadow(
+                              blurRadius: 12.0,
+                              offset: Offset(8, 8),
+                              color: Color(0xFFD4D4D4),
+                          )
+                        ]
                     ),
                     child: Padding(
                       padding: EdgeInsets.only(
@@ -190,7 +196,7 @@
                         children: [
                           Container(
                             width: 340,
-                            height: 100,
+                            height: 106,
                             decoration: BoxDecoration(
                               color: AppColorsLight.cardPrimary,
                               borderRadius: BorderRadius.circular(
@@ -221,20 +227,20 @@
                                   width: 325,
                                   height: 110,
                                   decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.white.withOpacity(0),
-                                        offset: const Offset(-8.0, -4.0),
-                                        blurRadius: 16.0,
-                                      ),
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        offset: const Offset(4.0, 2.0),
-                                        blurRadius: 16.0,
-                                      ),
-                                    ],
-                                    color: const Color(0xFFEBEFF3),
                                     borderRadius: BorderRadius.circular(12.0),
+                                    color: AppColorsLight.primary,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                      ),
+                                      BoxShadow(
+                                        blurRadius: 12.0,
+                                        offset: Offset(8, 8),
+                                        color: Color(0xFFD4D4D4)
+                                      )
+                                    ]
                                   ),
                                   padding: const EdgeInsets.all(19.0),
                                   child: Row(
@@ -299,11 +305,11 @@
 
                           ),
                           SizedBox(
-                            height: 25,
+                            height: 30,
                           ),
                           Container(
                             width: 340,
-                            height: 100,
+                            height: 106,
                             decoration: BoxDecoration(
                               color: AppColorsLight.cardPrimary,
                               borderRadius: BorderRadius.circular(
@@ -329,25 +335,27 @@
                                   child: Text('No articles found.'),
                                 );
                               } else {
-                                final article = articleController.articles[0]; // Mengambil artikel pertama dari API
+                                final article = articleController.articles[0];
                                 return Container(
                                   width: 325,
                                   height: 110,
                                   decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.white.withOpacity(0),
-                                        offset: const Offset(-8.0, -4.0),
-                                        blurRadius: 16.0,
-                                      ),
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        offset: const Offset(8.0, 4.0),
-                                        blurRadius: 16.0,
-                                      ),
-                                    ],
-                                    color: const Color(0xFFEBEFF3),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      color: AppColorsLight.primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                        ),
+                                        BoxShadow(
+                                            blurRadius: 12.0,
+                                            offset: Offset(8, 8),
+                                            color: Color(0xFFD4D4D4)
+                                        )
+                                      ]
+
+
                                   ),
                                   padding: const EdgeInsets.all(19.0),
                                   child: Row(
@@ -413,11 +421,11 @@
                           ),
 
                           SizedBox(
-                            height: 25,
+                            height: 30,
                           ),
                           Container(
                             width: 340,
-                            height: 100,
+                            height: 106,
                             decoration: BoxDecoration(
                               color: AppColorsLight.cardPrimary,
                               borderRadius: BorderRadius.circular(
@@ -443,25 +451,27 @@
                                   child: Text('No articles found.'),
                                 );
                               } else {
-                                final article = articleController.articles[0]; // Mengambil artikel pertama dari API
+                                final article = articleController.articles[0];
                                 return Container(
                                   width: 325,
                                   height: 110,
                                   decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.white.withOpacity(0),
-                                        offset: const Offset(-8.0, -4.0),
-                                        blurRadius: 16.0,
-                                      ),
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        offset: const Offset(8.0, 4.0),
-                                        blurRadius: 16.0,
-                                      ),
-                                    ],
-                                    color: const Color(0xFFEBEFF3),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      color: AppColorsLight.primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                        ),
+                                        BoxShadow(
+                                            blurRadius: 12.0,
+                                            offset: Offset(8, 8),
+                                            color: Color(0xFFD4D4D4)
+                                        )
+                                      ]
+
+
                                   ),
                                   padding: const EdgeInsets.all(19.0),
                                   child: Row(

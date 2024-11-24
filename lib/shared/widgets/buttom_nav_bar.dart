@@ -37,12 +37,24 @@ class BottomNavBar extends StatelessWidget {
         SizedBox(
           width: 24,
           height: 24,
-          child: Image.asset('assets/images/navbar/scan.png'),
+          child: ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              AppColorsLight.teksThird,
+              BlendMode.srcIn,
+            ),
+            child: Image.asset('assets/images/navbar/scan.png'),
+          ),
         ),
         SizedBox(
           width: 24,
           height: 24,
-          child: Image.asset('assets/images/navbar/chats.png'),
+          child: ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              AppColorsLight.teksThird,
+              BlendMode.srcIn,
+            ),
+            child: Image.asset('assets/images/navbar/chats.png'),
+        ),
         ),
       ],
     );
