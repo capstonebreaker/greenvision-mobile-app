@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:green_vision/views/profile/edit_profile_page.dart';
 import '../../constants/colors.dart';
+import '../../shared/widgets/buttom_nav_bar.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -68,225 +70,420 @@ class ProfilePage extends StatelessWidget {
               ),
               Expanded(
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: AppColorsLight.aksen,
-                      border: Border.all(
-                          color: Colors.black.withOpacity(.5),
-                          width: 2.0
-                      ),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(45.0),
-                        topRight: Radius.circular(45.0),
-                      ),
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(45.0),
+                          topRight: Radius.circular(45.0),
+                        ),
+                        color: AppColorsLight.primary,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 12.0,
+                            offset: Offset(-8, -8),
+                            color: Colors.white,
+                            // inset: true
+                          ),
+                          BoxShadow(
+                            blurRadius: 12.0,
+                            offset: Offset(8, 8),
+                            color: Color(0xFFD4D4D4),
+                            // inset: true
+                          )
+                        ]
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    child: ListView(
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 23, right: 24, left: 24, bottom: 0),
-                          child: Container(
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
+                              top: 20, right: 24, left: 24, bottom: 0
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                                const Text(
                                   'Settings & Preferences',
                                   style: TextStyle(
                                       color: AppColorsLight.teksPrimary,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w300
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500
+                                  )
+                                ),
+                              const SizedBox(height: 20),
+                              SizedBox(
+                                width: 360,
+                                height: 55,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      PageRouteBuilder(
+                                        pageBuilder: (
+                                            context,
+                                            animation,
+                                            secondaryAnimation) => const EditProfilePage(),
+                                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                          const begin = 0.0;
+                                          const end = 1.0;
+                                          const curve = Curves.easeInOut;
+
+                                          final tween = Tween(
+                                              begin: begin,
+                                              end: end
+                                          )
+                                              .chain(CurveTween(curve: curve));
+                                          final opacityAnimation = animation.drive(tween);
+
+                                          return FadeTransition(
+                                            opacity: opacityAnimation,
+                                            child: child,
+                                          );
+                                        },
+                                        transitionDuration: const Duration(milliseconds: 500),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColorsLight.primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                        ),
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(8, 8),
+                                          color: Color(0xFFD4D4D4),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 20),
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                width: 25,
+                                                height: 25,
+                                                child: ColorFiltered(
+                                                  colorFilter: const ColorFilter.mode(
+                                                    AppColorsLight.teksThird,
+                                                    BlendMode.srcIn,
+                                                  ),
+                                                  child: Image.asset('assets/icons/account.png'),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            const Text(
+                                              'Edit Profile',
+                                              style: TextStyle(
+                                                color: AppColorsLight.teksThird,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(right: 20),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios_outlined,
+                                            color: AppColorsLight.teksThird,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              SizedBox(
+                                width: 360,
+                                height: 55,
+                                child: InkWell(
+                                  onTap: () {
+
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColorsLight.primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                        ),
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(8, 8),
+                                          color: Color(0xFFD4D4D4),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 20),
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                width: 25,
+                                                height: 25,
+                                                child: ColorFiltered(
+                                                  colorFilter: const ColorFilter.mode(
+                                                    AppColorsLight.teksThird,
+                                                    BlendMode.srcIn,
+                                                  ),
+                                                  child: Image.asset('assets/icons/security.png'),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            const Text(
+                                              'Security',
+                                              style: TextStyle(
+                                                color: AppColorsLight.teksThird,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(right: 20),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios_outlined,
+                                            color: AppColorsLight.teksThird,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              SizedBox(
+                                width: 360,
+                                height: 55,
+                                child: InkWell(
+                                  onTap: () {
+
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColorsLight.primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                        ),
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(8, 8),
+                                          color: Color(0xFFD4D4D4),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 20),
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                width: 25,
+                                                height: 25,
+                                                child: ColorFiltered(
+                                                  colorFilter: const ColorFilter.mode(
+                                                    AppColorsLight.teksThird,
+                                                    BlendMode.srcIn,
+                                                  ),
+                                                  child: Image.asset('assets/icons/about.png'),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            const Text(
+                                              'About GreenVision',
+                                              style: TextStyle(
+                                                color: AppColorsLight.teksThird,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(right: 20),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios_outlined,
+                                            color: AppColorsLight.teksThird,
+                                            size: 16, // Ukuran ikon panah
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              SizedBox(
+                                width: 360,
+                                height: 55,
+                                child: InkWell(
+                                  onTap: () {
+
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColorsLight.primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                        ),
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(8, 8),
+                                          color: Color(0xFFD4D4D4),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 20),
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                width: 25,
+                                                height: 25,
+                                                child: ColorFiltered(
+                                                  colorFilter: const ColorFilter.mode(
+                                                    AppColorsLight.teksThird,
+                                                    BlendMode.srcIn,
+                                                  ),
+                                                  child: Image.asset('assets/icons/share.png'),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            const Text(
+                                              'Share App',
+                                              style: TextStyle(
+                                                color: AppColorsLight.teksThird,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(right: 20),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios_outlined,
+                                            color: AppColorsLight.teksThird,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              SizedBox(
+                                width: 360,
+                                height: 55,
+                                child: InkWell(
+                                  onTap: () {
+
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColorsLight.primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                        ),
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(8, 8),
+                                          color: Color(0xFFD4D4D4),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 20),
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                width: 25,
+                                                height: 25,
+                                                child: ColorFiltered(
+                                                  colorFilter: const ColorFilter.mode(
+                                                    AppColorsLight.teksThird,
+                                                    BlendMode.srcIn,
+                                                  ),
+                                                  child: Image.asset('assets/icons/logout.png'),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            const Text(
+                                              'Log out',
+                                              style: TextStyle(
+                                                color: AppColorsLight.teksThird,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(right: 20),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios_outlined,
+                                            color: AppColorsLight.teksThird,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.person, color: Colors.black, size: 28),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text('Profile', style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios_outlined)
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.person, color: Colors.black, size: 28),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text('Profile', style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios_outlined)
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.person, color: Colors.black, size: 28),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text('Profile', style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios_outlined)
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.person, color: Colors.black, size: 28),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text('Profile', style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios_outlined)
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.person, color: Colors.black, size: 28),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text('Profile', style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios_outlined)
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  'Support',
-                                  style: TextStyle(
-                                      color: AppColorsLight.teksPrimary,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w300
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.person, color: Colors.black, size: 28),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text('Profile', style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios_outlined)
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.person, color: Colors.black, size: 28),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text('Profile', style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios_outlined)
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.person, color: Colors.black, size: 28),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text('Profile', style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                    Icon(Icons.arrow_forward_ios_outlined)
-                                  ],
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         )
                       ],
@@ -297,6 +494,7 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

@@ -23,7 +23,7 @@ void main() async {
 
   runApp(MyApp(
       initialRoutes:
-      user != null ? AppRoutesNamed.pageHome : AppRoutesNamed.pageRegister));
+      user != null ? AppRoutesNamed.pageLogin : AppRoutesNamed.pageRegister));
 }
 
 class MyApp extends StatelessWidget {

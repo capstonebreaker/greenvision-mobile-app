@@ -535,6 +535,122 @@
                             }),
 
                           ),
+
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Container(
+                            width: 340,
+                            height: 106,
+                            decoration: BoxDecoration(
+                              color: AppColorsLight.cardPrimary,
+                              borderRadius: BorderRadius.circular(
+                                  8),
+                            ),
+                            child: Obx(() {
+                              if (articleController.isLoading.value) {
+                                return const Center(
+                                  child: CircularProgressIndicator(), // Loading spinner
+                                );
+                              } else if (articleController.errorMessage.isNotEmpty) {
+                                return Center(
+                                  child: Text(
+                                    articleController.errorMessage.value,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                );
+                              } else if (articleController.articles.isEmpty) {
+                                return const Center(
+                                  child: Text('No articles found.'),
+                                );
+                              } else {
+                                final article = articleController.articles[0];
+                                return Container(
+                                  width: 325,
+                                  height: 110,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      color: AppColorsLight.primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 12.0,
+                                          offset: Offset(-8, -8),
+                                          color: Colors.white,
+                                        ),
+                                        BoxShadow(
+                                            blurRadius: 12.0,
+                                            offset: Offset(8, 8),
+                                            color: Color(0xFFD4D4D4)
+                                        )
+                                      ]
+
+
+                                  ),
+                                  padding: const EdgeInsets.all(19.0),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      // Gambar dari API
+                                      Center(
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(15.0),
+                                          child: Image.network(
+                                            article['img'] ?? 'https://via.placeholder.com/75',
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 14.0),
+                                      // Teks di sebelah kanan gambar
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              article['title'] ?? 'No Title',
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black87,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              article['deskripsi'] ?? 'No description available.',
+                                              style: const TextStyle(
+                                                fontSize: 7,
+                                                color: Colors.black54,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            GestureDetector(
+                                              onTap: () {
+
+                                              },
+                                              child: const Text(
+                                                'Baca selengkapnya >',
+                                                style: TextStyle(
+                                                  fontSize: 8,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            }),
+
+                          ),
                         ],
                       )),
                 ],
