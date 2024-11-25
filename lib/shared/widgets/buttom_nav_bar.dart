@@ -11,7 +11,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CurvedNavigationBar(
       buttonBackgroundColor: AppColorsLight.third,
-      backgroundColor: AppColorsLight.primary,
+      backgroundColor: Colors.transparent,
       color: Colors.white, // Change this to your desired active color
       height: 60.0,
       index: _getCurrentIndex(),
@@ -25,6 +25,9 @@ class BottomNavBar extends StatelessWidget {
             break;
           case 2:
             Get.toNamed(AppRoutesNamed.pageComunity);
+            break;
+          case 3:
+            Get.toNamed(AppRoutesNamed.pageProfile);
             break;
         }
       },
@@ -56,6 +59,17 @@ class BottomNavBar extends StatelessWidget {
             child: Image.asset('assets/images/navbar/chats.png'),
         ),
         ),
+        SizedBox(
+          width: 24,
+          height: 24,
+          child: ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              AppColorsLight.teksThird,
+              BlendMode.srcIn,
+            ),
+            child: Image.asset('assets/images/navbar/person.png'),
+          ),
+        ),
       ],
     );
   }
@@ -69,6 +83,8 @@ class BottomNavBar extends StatelessWidget {
         return 1;
       case AppRoutesNamed.pageComunity:
         return 2;
+      case AppRoutesNamed.pageProfile:
+        return 3;
       default:
         return 0;
     }
