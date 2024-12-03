@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:green_vision/controller/login_controller.dart';
 import 'package:green_vision/views/profile/edit_profile_page.dart';
 import '../../constants/colors.dart';
+import '../../controller/register_controller.dart';
 import '../../shared/widgets/buttom_nav_bar.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -9,6 +13,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LoginController controller = Get.put(LoginController());
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColorsLight.primary,
@@ -420,7 +426,7 @@ class ProfilePage extends StatelessWidget {
                                 height: 55,
                                 child: InkWell(
                                   onTap: () {
-
+                                    controller.showLogoutConfirmationDialog(context);
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
