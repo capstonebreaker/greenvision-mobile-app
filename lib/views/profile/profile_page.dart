@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:green_vision/controller/login_controller.dart';
 import 'package:green_vision/views/profile/edit_profile_page.dart';
+import 'package:green_vision/views/profile/security_page.dart';
 import '../../constants/colors.dart';
 import '../../controller/register_controller.dart';
 import '../../shared/widgets/buttom_nav_bar.dart';
@@ -216,7 +217,32 @@ class ProfilePage extends StatelessWidget {
                                 height: 55,
                                 child: InkWell(
                                   onTap: () {
+                                    Navigator.of(context).push(
+                                      PageRouteBuilder(
+                                        pageBuilder: (
+                                            context,
+                                            animation,
+                                            secondaryAnimation) => const SecurityPage(),
+                                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                          const begin = 0.0;
+                                          const end = 1.0;
+                                          const curve = Curves.easeInOut;
 
+                                          final tween = Tween(
+                                              begin: begin,
+                                              end: end
+                                          )
+                                              .chain(CurveTween(curve: curve));
+                                          final opacityAnimation = animation.drive(tween);
+
+                                          return FadeTransition(
+                                            opacity: opacityAnimation,
+                                            child: child,
+                                          );
+                                        },
+                                        transitionDuration: const Duration(milliseconds: 500),
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
