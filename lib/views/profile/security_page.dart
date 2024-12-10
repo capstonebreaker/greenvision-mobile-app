@@ -32,7 +32,7 @@ class SecurityPage extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text(
-              'Pada saat Anda mengakses aplikasi Padi Safe dan layanan online yang Kami sediakan, maka semua informasi dan data pribadi Anda akan Kami kumpulkan dengan ketentuan sebagai berikut:',
+              'Pada saat Anda mengakses aplikasi GreenVision dan layanan online yang Kami sediakan, maka semua informasi dan data pribadi Anda akan Kami kumpulkan dengan ketentuan sebagai berikut:',
               style: textStyle,
             ),
             SizedBox(height: 16),
@@ -99,7 +99,7 @@ class SecurityPage extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 16.0),
               child: Text(
                 '8. Penghapusan Data\n'
-                    'Anda dapat meminta penghapusan data pribadi Anda melalui email support@padisafe.com. Kami akan mengkonfirmasi permintaan Anda sebelum memproses penghapusan data sesuai dengan kebijakan privasi ini.',
+                    'Anda dapat meminta penghapusan data pribadi Anda melalui email GreenVision@gmail.com. Kami akan mengkonfirmasi permintaan Anda sebelum memproses penghapusan data sesuai dengan kebijakan privasi ini.',
                 style: textStyle,
               ),
             ),
@@ -107,7 +107,7 @@ class SecurityPage extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 16.0),
               child: Text(
                 '9. Keamanan Akun\n'
-                    'Anda bertanggung jawab atas keamanan akun Anda, termasuk menjaga kerahasiaan kata sandi dan mencegah akses tidak sah. Jika Anda mencurigai adanya pelanggaran keamanan, segera hubungi Kami melalui email di support@padisafe.com.',
+                    'Anda bertanggung jawab atas keamanan akun Anda, termasuk menjaga kerahasiaan kata sandi dan mencegah akses tidak sah. Jika Anda mencurigai adanya pelanggaran keamanan, segera hubungi Kami melalui email di GreenVision@gmail.com.',
                 style: textStyle,
               ),
             ),
