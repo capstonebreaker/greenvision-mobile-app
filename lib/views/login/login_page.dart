@@ -117,48 +117,48 @@ class LoginPage extends StatelessWidget {
                         ),
 
                         const SizedBox(height: 20),
-                        SizedBox(
-                          width: 360,
-                          height: 48,
-                          child: InkWell(
-                            onTap: () {
-                              // Navigator.pushAndRemoveUntil(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => LoginScreen()),
-                              //       (route) => false,
-                              // );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: AppColorsLight.third,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
-                                    color: Colors.white,
-                                  ),
-                                  BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
-                                    color: Color(0xFFD4D4D4),
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Sign In with Google",
-                                  style: GoogleFonts.dmSans(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // SizedBox(
+                        //   width: 360,
+                        //   height: 48,
+                        //   child: InkWell(
+                        //     onTap: () {
+                        //       // Navigator.pushAndRemoveUntil(
+                        //       //   context,
+                        //       //   MaterialPageRoute(
+                        //       //       builder: (context) => LoginScreen()),
+                        //       //       (route) => false,
+                        //       // );
+                        //     },
+                        //     child: Container(
+                        //       decoration: BoxDecoration(
+                        //         borderRadius: BorderRadius.circular(10),
+                        //         color: AppColorsLight.third,
+                        //         boxShadow: const [
+                        //           BoxShadow(
+                        //             blurRadius: 12.0,
+                        //             offset: Offset(-8, -8),
+                        //             color: Colors.white,
+                        //           ),
+                        //           BoxShadow(
+                        //             blurRadius: 12.0,
+                        //             offset: Offset(8, 8),
+                        //             color: Color(0xFFD4D4D4),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //       child: Center(
+                        //         child: Text(
+                        //           "Sign In with Google",
+                        //           style: GoogleFonts.dmSans(
+                        //             fontSize: 14,
+                        //             fontWeight: FontWeight.w600,
+                        //             color: Colors.black,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(height: 20,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
