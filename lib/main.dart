@@ -1,29 +1,27 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_vision/routes/app_routes.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:green_vision/routes/app_routes_named.dart';
-import 'firebase_options.dart';
+import 'controller/user_controller.dart';
 
 void main() async {
-
-
   WidgetsFlutterBinding.ensureInitialized();
+  Get.put(UserController());
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  final User? user = FirebaseAuth.instance.currentUser;
-
-  print(user);
-  print(User);
-
+  bool isLoggedIn = await checkLoginStatus();
 
   runApp(MyApp(
-      initialRoutes:
-      user != null ? AppRoutesNamed.pageHome : AppRoutesNamed.pageLogin));
+      initialRoutes: isLoggedIn ? AppRoutesNamed.pageHome : AppRoutesNamed.pageLogin));
+}
+
+Future<bool> checkLoginStatus() async {
+  final userController = Get.find<UserController>();
+
+  if (userController.username.value.isNotEmpty) {
+    return true;
+  }
+
+  return false;
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false, // tambahan
+      debugShowCheckedModeBanner: false,
       initialRoute: initialRoutes,
       getPages: AppRoutes.routes,
     );
