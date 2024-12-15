@@ -86,23 +86,13 @@ class RegisterPage extends StatelessWidget {
                             leadingIconPath: 'assets/icons/lock.png',
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 20, right: 24, left: 24, bottom: 0),
-                          child: CustomTextField(
-                            hintText: 'Confirm Password',
-                            controller: controller.confirmPasswordController,
-                            obscureText: true,
-                            leadingIconPath: 'assets/icons/lock.png',
-                          ),
-                        ),
                         const SizedBox(height: 40),
                         SizedBox(
                           width: 360,
                           height: 48,
                           child: InkWell(
                             onTap: () {
-                              controller.createUser();
+                              controller.register();
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -134,45 +124,7 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 20),
-                        SizedBox(
-                          width: 360,
-                          height: 48,
-                          child: InkWell(
-                            onTap: () {
-                              Get.toNamed(AppRoutesNamed.pageLogin);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: AppColorsLight.third,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
-                                    color: Colors.white,
-                                  ),
-                                  BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
-                                    color: Color(0xFFD4D4D4),
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Sign Up with Google",
-                                  style: GoogleFonts.dmSans(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

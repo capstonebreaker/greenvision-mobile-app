@@ -1,7 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:green_vision/constants/colors.dart';
+import 'package:green_vision/controller/user_controller.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../routes/app_routes_named.dart';
 import '../views/home/home_page.dart';
@@ -10,31 +11,62 @@ import '../views/register/register_page.dart';
 class LoginController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  var isLoading = false.obs; // Observable boolean for loading state
+
+  final UserController userController = Get.find();
+
+  var isLoading = false.obs;
 
   Future<void> login() async {
-    isLoading.value = true; // Set loading to true
-    final auth = FirebaseAuth.instance;
+    isLoading.value = true;
+    final url = Uri.parse('https://capstone-be-zeta.vercel.app/api/auth/login');
     try {
-      await auth.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'email': emailController.text.trim(),
+          'password': passwordController.text.trim(),
+        }),
       );
-      Get.offAll(() => HomePage());
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        String username = data['data']['username'] ?? 'Guest';
+        userController.setUsername(username);
+        userController.setEmail(data['data']['email']);
+        print("Login Response: $data");
+
+        if (data['access_token'] != null) {
+          Get.offAll(() => HomePage());
+        } else {
+          Get.snackbar(
+            'Login Error',
+            'Unexpected response from server',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        }
+      } else {
+        Get.snackbar(
+          'Login Error',
+          'Failed to login. Please check your credentials.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
     } catch (e) {
+      print("Login exception: $e");
       Get.snackbar(
         'Login Error',
-        'Failed to login. Please check your credentials.',
+        'An unexpected error occurred.',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        borderRadius: 8,
-        margin: EdgeInsets.all(16),
       );
-      print("Login error: $e");
     } finally {
-      isLoading.value =
-      false; // Set loading to false regardless of success or failure
+      isLoading.value = false;
     }
   }
 
@@ -44,9 +76,7 @@ class LoginController extends GetxController {
 
   Future<void> logout() async {
     try {
-      await FirebaseAuth.instance.signOut();
-      Get.offAllNamed(
-          AppRoutesNamed.pageLogin); // Navigate back to the login page
+      Get.offAllNamed(AppRoutesNamed.pageLogin);
     } catch (e) {
       Get.snackbar(
         'Logout Error',
@@ -54,10 +84,7 @@ class LoginController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        borderRadius: 8,
-        margin: EdgeInsets.all(16),
       );
-      print("Logout error: $e");
     }
   }
 
@@ -66,7 +93,7 @@ class LoginController extends GetxController {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: AppColorsLight.aksen,
+          backgroundColor: Colors.white,
           title: Text('Confirm Logout'),
           content: Text('Are you sure you want to log out?'),
           actions: <Widget>[
