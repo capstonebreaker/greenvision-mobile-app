@@ -4,6 +4,7 @@ import 'package:green_vision/views/comunity/comunity_page.dart';
 import 'package:green_vision/views/get_started/get_started_screen.dart';
 import 'package:green_vision/views/home/home_page.dart';
 import 'package:green_vision/views/login/login_page.dart';
+import 'package:green_vision/views/paddy_disease/image_upload_page.dart';
 import 'package:green_vision/views/register/register_page.dart';
 import 'package:green_vision/views/store/store_page.dart';
 
@@ -20,5 +21,6 @@ class AppRoutes {
     GetPage(name: AppRoutesNamed.pageChatBot, page: () => ChatBotPage()),
     GetPage(name: AppRoutesNamed.pageProfile, page: () => ProfilePage()),
     GetPage(name: AppRoutesNamed.pageStore, page: () => StorePage()),
+    GetPage(name: AppRoutesNamed.pageDisease, page: () => ImageUploadPage()),
   ];
 }
