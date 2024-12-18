@@ -13,7 +13,6 @@ class StorePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColorsLight.primary,
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios_new),
         title: Text(
           "Cari toko pupuk",
           style: GoogleFonts.dmSans(fontSize: 14, fontWeight: FontWeight.normal),
@@ -131,8 +130,7 @@ class StorePage extends StatelessWidget {
         } else {
           return const Center(child: Text('No data found'));
         }
-      }),
-      bottomNavigationBar: BottomNavBar(),
+      })
     );
   }
 }

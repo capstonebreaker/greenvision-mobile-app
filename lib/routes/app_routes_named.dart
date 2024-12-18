@@ -7,5 +7,6 @@ class AppRoutesNamed {
   static const pageChatBot = '/page-chat-bot';
   static const pageProfile = '/page-profile';
   static const pageStore = '/page-store';
+  static const pageDisease = '/page-disease';
 
 }
