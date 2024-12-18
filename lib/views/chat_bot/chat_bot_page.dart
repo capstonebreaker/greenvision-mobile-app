@@ -5,7 +5,7 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:green_vision/api/api_key.dart';
 
 
-import '../../constants/colors.dart'; // Make sure this import is correct
+import '../../constants/colors.dart';
 
 class ChatBotPage extends StatefulWidget {
   const ChatBotPage({super.key});

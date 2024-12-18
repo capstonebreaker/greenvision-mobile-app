@@ -31,7 +31,6 @@ class RegisterController extends GetxController {
     return true;
   }
 
-  // Proses Register
   Future<void> register() async {
     if (!validateFields()) return;
 

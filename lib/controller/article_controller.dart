@@ -42,3 +42,4 @@ class ArticleController extends GetxController {
     }
   }
 }
+

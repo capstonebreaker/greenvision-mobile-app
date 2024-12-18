@@ -49,6 +49,7 @@ dependencies:
   geolocator: ^13.0.1
   geocoding: ^3.0.0
   flutter_inset_box_shadow: ^1.0.8
+  share_plus: ^4.0.3
 
 flutter_launcher_icons:
   android: "launcher_icon"

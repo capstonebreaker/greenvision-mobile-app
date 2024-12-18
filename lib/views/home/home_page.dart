@@ -210,7 +210,7 @@ class HomePage extends StatelessWidget {
                           ),
                           child: Obx(() {
                             if (articleController.isLoading.value) {
-                              return const Center(
+                              return  const Center(
                                 child: CircularProgressIndicator(), // Loading spinner
                               );
                             } else if (articleController.errorMessage.isNotEmpty) {
