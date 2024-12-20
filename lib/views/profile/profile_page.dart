@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:green_vision/controller/login_controller.dart';
 import 'package:green_vision/views/profile/edit_profile_page.dart';
 import 'package:green_vision/views/profile/security_page.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../constants/colors.dart';
 import '../../controller/user_controller.dart';
 import '../../shared/widgets/buttom_nav_bar.dart';
@@ -412,7 +411,7 @@ class ProfilePage extends StatelessWidget {
                               height: 55,
                               child: InkWell(
                                 onTap: () {
-                                  Share.share('');
+                                  // Share.share('');
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

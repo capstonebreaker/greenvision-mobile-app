@@ -47,7 +47,7 @@ class ImageUploadPage extends StatelessWidget {
                         style: TextStyle(fontSize: 20)),
                         ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(AppRoutesNamed.pageStore, transition: Transition.fade, duration: const Duration(milliseconds: 500));
+                            Get.toNamed(AppRoutesNamed.pageStore,);
                           },
                           child: Text('Pergi ke Toko Pupuk Terdekat'),
                         )
