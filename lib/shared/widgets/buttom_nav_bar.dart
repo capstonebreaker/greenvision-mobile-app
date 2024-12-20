@@ -21,7 +21,7 @@ class BottomNavBar extends StatelessWidget {
             Get.toNamed(AppRoutesNamed.pageHome);
             break;
           case 1:
-            Get.toNamed(AppRoutesNamed.pageHome);
+            Get.toNamed(AppRoutesNamed.pageDisease);
             break;
           case 2:
             Get.toNamed(AppRoutesNamed.pageComunity);
@@ -79,7 +79,7 @@ class BottomNavBar extends StatelessWidget {
     switch (currentRoute) {
       case AppRoutesNamed.pageHome:
         return 0;
-      case AppRoutesNamed.pageHome:
+      case AppRoutesNamed.pageDisease:
         return 1;
       case AppRoutesNamed.pageComunity:
         return 2;
