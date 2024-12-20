@@ -60,7 +60,7 @@ class AuthServices {
         'Authorization': 'Bearer $token',
       },
     );
-
+    
     if (response.statusCode == 200) {
       await _sessionService.clearSession();
       return true;
