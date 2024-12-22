@@ -4,13 +4,13 @@ import 'package:http/http.dart' as http;
 
 class ArticleController extends GetxController {
   var isLoading = true.obs;
-  var articles = <Map<String, dynamic>>[].obs; // A list of articles
+  var articles = <Map<String, dynamic>>[].obs;
   var errorMessage = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
-    fetchArticles(); // Change to fetch articles
+    fetchArticles();
   }
 
   Future<void> fetchArticles() async {

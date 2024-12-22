@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
-
-import '../../routes/app_routes_named.dart';
+import 'package:green_vision/views/login/login_page.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
@@ -17,16 +14,14 @@ class GetStartedScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            color: Colors.black,
+            color: AppColorsLight.primary,
           ),
           Positioned(
             right: 0,
             left: 0,
-            child: Container(
-              child: Image.asset(
-                'assets/images/backgrounds/get_started/paddy.png',
-                fit: BoxFit.cover,
-              ),
+            child: Image.asset(
+              'assets/images/backgrounds/get_started/getstarted.png',
+              fit: BoxFit.cover,
             ),
           ),
           Positioned(
@@ -35,14 +30,12 @@ class GetStartedScreen extends StatelessWidget {
             left: 0,
             child: Stack(
               children: [
-                Container(
-                  child: Image.asset(
-                      'assets/images/backgrounds/get_started/container.png'),
-                ),
+                Image.asset(
+                    'assets/images/backgrounds/get_started/ShadowContainer.png'),
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 24, top: 24, right: 24, bottom: 142),
+                        left: 24, top: 15, right: 24, bottom: 142),
                     child: Column(
                       children: [
                         Text(
@@ -51,38 +44,79 @@ class GetStartedScreen extends StatelessWidget {
                           style: GoogleFonts.sora(
                             fontSize: 32,
                             fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           'Welcome to an innovative platform where  \ntechnology empowers you to detect crop \nissues and find timely solutions.',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.sora(
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
-                              color: Color(0xffA2A2A2)),
+                              color: const Color(0xffA2A2A2)),
                         ),
-                        SizedBox(height: 32),
+                        const SizedBox(height: 55),
                         SizedBox(
-                          width: 327,
-                          height: 56,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColorsDark.third,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16))),
-                              onPressed: () {
-                                Get.toNamed(AppRoutesNamed.pageLogin);
-                              },
-                              child: Text(
-                                "Get Started",
-                                style: GoogleFonts.sora(
+                          width: 330,
+                          height: 64,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                PageRouteBuilder(
+                                  pageBuilder: (
+                                      context,
+                                      animation,
+                                      secondaryAnimation) => const LoginPage(),
+                                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                    const begin = 0.0;
+                                    const end = 1.0;
+                                    const curve = Curves.easeInOut;
+                                    final tween = Tween(
+                                        begin: begin,
+                                        end: end
+                                    )
+                                        .chain(CurveTween(curve: curve));
+                                    final opacityAnimation = animation.drive(tween);
+                                    return FadeTransition(
+                                      opacity: opacityAnimation,
+                                      child: child,
+                                    );
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: AppColorsLight.third,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(-8, -8),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Get Started",
+                                  style: GoogleFonts.sora(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
-                                    color: Colors.white),
-                              )),
-                        )
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
