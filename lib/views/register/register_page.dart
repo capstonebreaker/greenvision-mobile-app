@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/controller/register_controller.dart';
 import 'package:green_vision/routes/app_routes_named.dart';
+import 'package:green_vision/views/login/login_page.dart';
 
 import '../../constants/colors.dart';
 import '../../shared/widgets/custom_text_field.dart';
@@ -89,7 +90,7 @@ class RegisterPage extends StatelessWidget {
                         const SizedBox(height: 40),
                         SizedBox(
                           width: 360,
-                          height: 48,
+                          height: 55,
                           child: InkWell(
                             onTap: () {
                               controller.register();
@@ -139,7 +140,30 @@ class RegisterPage extends StatelessWidget {
                             SizedBox(width: 2),
                             InkWell(
                               onTap: () {
-                                controller.navigateToLogin();
+                                Navigator.of(context).push(
+                                  PageRouteBuilder(
+                                    pageBuilder: (
+                                        context,
+                                        animation,
+                                        secondaryAnimation) => const LoginPage(),
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      const begin = 0.0;
+                                      const end = 1.0;
+                                      const curve = Curves.easeInSine;
+                                      final tween = Tween(
+                                          begin: begin,
+                                          end: end
+                                      )
+                                          .chain(CurveTween(curve: curve));
+                                      final opacityAnimation = animation.drive(tween);
+                                      return FadeTransition(
+                                        opacity: opacityAnimation,
+                                        child: child,
+                                      );
+                                    },
+                                    transitionDuration: const Duration(milliseconds: 500),
+                                  ),
+                                );
                               },
                               child: Text(
                                 'masuk',
@@ -158,7 +182,7 @@ class RegisterPage extends StatelessWidget {
                           style: GoogleFonts.dmSans(
                             fontSize: 12,
                             fontWeight: FontWeight.normal,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ],

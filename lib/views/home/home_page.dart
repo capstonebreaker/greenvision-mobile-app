@@ -25,11 +25,10 @@ class HomePage extends StatelessWidget {
       backgroundColor: AppColorsLight.primary,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 55, bottom: 25, left: 17, right: 25),
+          padding: const EdgeInsets.only(top: 55, bottom: 25, left: 25, right: 25),
           child: SafeArea(
             child: Column(
               children: [
-                // Header Section
                 Row(
                   children: [
                     Padding(
@@ -37,7 +36,7 @@ class HomePage extends StatelessWidget {
                       child: SizedBox(
                           height: 48,
                           width: 49,
-                          child: Image.asset('assets/images/avatar/avatar.png')),
+                          child: Image.asset('assets/images/avatar/image.png')),
                     ),
                     const SizedBox(
                       width: 16,
@@ -108,7 +107,7 @@ class HomePage extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 22, bottom: 21, right: 32.5, left: 32.5),
+                        top: 22, bottom: 21, right: 31.5, left: 31.5),
                     child: Obx(() {
                       final weather = weatherController.weather.value;
 
@@ -179,7 +178,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 8),
                       child: Text(
                         'Education',
                         style: GoogleFonts.dmSans(
@@ -189,9 +188,6 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                const SizedBox(
-                  height: 19,
                 ),
                 Obx(() {
                   if (articleController.isLoading.value) {
@@ -219,7 +215,7 @@ class HomePage extends StatelessWidget {
                           width: 340,
                           height: 106,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
+                              borderRadius: BorderRadius.circular(15.0),
                               color: AppColorsLight.primary,
                               boxShadow: const [
                                 BoxShadow(
@@ -234,8 +230,8 @@ class HomePage extends StatelessWidget {
                                 )
                               ]
                           ),
-                          margin: const EdgeInsets.symmetric(vertical: 12.0),
-                          padding: const EdgeInsets.all(19.0),
+                          margin: const EdgeInsets.symmetric(vertical: 11.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 19.0, vertical: 15.0),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -256,22 +252,19 @@ class HomePage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      article['title'] ?? 'No Title',
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black87,
-                                      ),
+                                      article['title']!.split(' ').length > 4
+                                          ? '${article['title']!.split(' ').sublist(0, 4).join(' ')}...'
+                                          : article['title']!,
+                                      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black87),
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      _getShortDescription(article['deskripsi'] ?? 'No description available.'),
-                                      style: const TextStyle(
-                                        fontSize: 9,
-                                        color: Colors.black54,
-                                      ),
+                                      article['deskripsi']!.split(' ').length > 10
+                                          ? '${article['deskripsi']!.split(' ').sublist(0, 10).join(' ')}...'
+                                          : article['deskripsi']!,
+                                      style: const TextStyle(fontSize: 9, color: Colors.black54),
                                     ),
-                                    const SizedBox(height: 10),
+                                    const SizedBox(height: 8),
                                     GestureDetector(
                                       onTap: () {
                                         Get.to(() => DetailArticlePage(articleData: article));
@@ -302,13 +295,5 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavBar(),
     );
-  }
-  String _getShortDescription(String description) {
-    final words = description.split(' ');
-    if (words.length > 10) {
-      return '${words.sublist(0, 10).join(' ')}...';
-    } else {
-      return description;
-    }
   }
 }

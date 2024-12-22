@@ -11,7 +11,7 @@ void main() async {
   bool isLoggedIn = await checkLoginStatus();
 
   runApp(MyApp(
-      initialRoutes: isLoggedIn ? AppRoutesNamed.pageHome : AppRoutesNamed.pageLogin));
+      initialRoutes: isLoggedIn ? AppRoutesNamed.pageGetStarted : AppRoutesNamed.pageLogin));
 }
 
 Future<bool> checkLoginStatus() async {

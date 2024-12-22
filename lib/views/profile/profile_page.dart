@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColorsLight.primary,
-      body: SingleChildScrollView(
+      body: Center(
         child: Container(
           padding: const EdgeInsets.all(0),
           height: size.height,
@@ -81,8 +81,8 @@ class ProfilePage extends StatelessWidget {
                 child: Container(
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(45.0),
-                        topRight: Radius.circular(45.0),
+                        topLeft: Radius.circular(40.0),
+                        topRight: Radius.circular(40.0),
                       ),
                       color: AppColorsLight.primary,
                       boxShadow: [
@@ -92,465 +92,455 @@ class ProfilePage extends StatelessWidget {
                           color: Colors.white,
                           // inset: true
                         ),
-                        BoxShadow(
-                          blurRadius: 12.0,
-                          offset: Offset(8, 8),
-                          color: Color(0xFFD4D4D4),
-                          // inset: true
-                        )
                       ]
                   ),
-                  child: ListView(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20, right: 24, left: 24, bottom: 0
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 35, right: 24, left: 24, bottom: 0
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                            'Settings & Preferences',
+                            style: TextStyle(
+                                color: AppColorsLight.teksPrimary,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500
+                            )
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                                'Settings & Preferences',
-                                style: TextStyle(
-                                    color: AppColorsLight.teksPrimary,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500
-                                )
-                            ),
-                            const SizedBox(height: 20),
-                            SizedBox(
-                              width: 360,
-                              height: 55,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    PageRouteBuilder(
-                                      pageBuilder: (
-                                          context,
-                                          animation,
-                                          secondaryAnimation) => const EditProfilePage(),
-                                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                        const begin = 0.0;
-                                        const end = 1.0;
-                                        const curve = Curves.easeInOut;
+                        const SizedBox(height: 30),
+                        SizedBox(
+                          width: 360,
+                          height: 55,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                PageRouteBuilder(
+                                  pageBuilder: (
+                                      context,
+                                      animation,
+                                      secondaryAnimation) => const EditProfilePage(),
+                                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                    const begin = 0.0;
+                                    const end = 1.0;
+                                    const curve = Curves.easeInOut;
 
-                                        final tween = Tween(
-                                            begin: begin,
-                                            end: end
-                                        )
-                                            .chain(CurveTween(curve: curve));
-                                        final opacityAnimation = animation.drive(tween);
+                                    final tween = Tween(
+                                        begin: begin,
+                                        end: end
+                                    )
+                                        .chain(CurveTween(curve: curve));
+                                    final opacityAnimation = animation.drive(tween);
 
-                                        return FadeTransition(
-                                          opacity: opacityAnimation,
-                                          child: child,
-                                        );
-                                      },
-                                      transitionDuration: const Duration(milliseconds: 500),
+                                    return FadeTransition(
+                                      opacity: opacityAnimation,
+                                      child: child,
+                                    );
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: AppColorsLight.primary,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(-8, -8),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: 25,
+                                          height: 25,
+                                          child: ColorFiltered(
+                                            colorFilter: const ColorFilter.mode(
+                                              AppColorsLight.teksThird,
+                                              BlendMode.srcIn,
+                                            ),
+                                            child: Image.asset('assets/icons/account.png'),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      const Text(
+                                        'Edit Profile',
+                                        style: TextStyle(
+                                          color: AppColorsLight.teksThird,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 20),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: AppColorsLight.teksThird,
+                                      size: 16,
                                     ),
-                                  );
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(8, 8),
-                                        color: Color(0xFFD4D4D4),
-                                      ),
-                                    ],
                                   ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 20),
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: 25,
-                                              height: 25,
-                                              child: ColorFiltered(
-                                                colorFilter: const ColorFilter.mode(
-                                                  AppColorsLight.teksThird,
-                                                  BlendMode.srcIn,
-                                                ),
-                                                child: Image.asset('assets/icons/account.png'),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(width: 12),
-                                          const Text(
-                                            'Edit Profile',
-                                            style: TextStyle(
-                                              color: AppColorsLight.teksThird,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(right: 20),
-                                        child: Icon(
-                                          Icons.arrow_forward_ios_outlined,
-                                          color: AppColorsLight.teksThird,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 20),
-                            SizedBox(
-                              width: 360,
-                              height: 55,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    PageRouteBuilder(
-                                      pageBuilder: (
-                                          context,
-                                          animation,
-                                          secondaryAnimation) => const SecurityPage(),
-                                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                        const begin = 0.0;
-                                        const end = 1.0;
-                                        const curve = Curves.easeInOut;
 
-                                        final tween = Tween(
-                                            begin: begin,
-                                            end: end
-                                        )
-                                            .chain(CurveTween(curve: curve));
-                                        final opacityAnimation = animation.drive(tween);
-
-                                        return FadeTransition(
-                                          opacity: opacityAnimation,
-                                          child: child,
-                                        );
-                                      },
-                                      transitionDuration: const Duration(milliseconds: 500),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(8, 8),
-                                        color: Color(0xFFD4D4D4),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 20),
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: 25,
-                                              height: 25,
-                                              child: ColorFiltered(
-                                                colorFilter: const ColorFilter.mode(
-                                                  AppColorsLight.teksThird,
-                                                  BlendMode.srcIn,
-                                                ),
-                                                child: Image.asset('assets/icons/security.png'),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(width: 12),
-                                          const Text(
-                                            'Security',
-                                            style: TextStyle(
-                                              color: AppColorsLight.teksThird,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(right: 20),
-                                        child: Icon(
-                                          Icons.arrow_forward_ios_outlined,
-                                          color: AppColorsLight.teksThird,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            SizedBox(
-                              width: 360,
-                              height: 55,
-                              child: InkWell(
-                                onTap: () {
-
-                                  Navigator.of(context).push(
-                                    PageRouteBuilder(
-                                      pageBuilder: (
-                                          context,
-                                          animation,
-                                          secondaryAnimation) => const AboutScreen(),
-                                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                        const begin = 0.0;
-                                        const end = 1.0;
-                                        const curve = Curves.easeInOut;
-
-                                        final tween = Tween(
-                                            begin: begin,
-                                            end: end
-                                        )
-                                            .chain(CurveTween(curve: curve));
-                                        final opacityAnimation = animation.drive(tween);
-
-                                        return FadeTransition(
-                                          opacity: opacityAnimation,
-                                          child: child,
-                                        );
-                                      },
-                                      transitionDuration: const Duration(milliseconds: 500),
-                                    ),
-                                  );
-
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(8, 8),
-                                        color: Color(0xFFD4D4D4),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 20),
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: 25,
-                                              height: 25,
-                                              child: ColorFiltered(
-                                                colorFilter: const ColorFilter.mode(
-                                                  AppColorsLight.teksThird,
-                                                  BlendMode.srcIn,
-                                                ),
-                                                child: Image.asset('assets/icons/about.png'),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(width: 12),
-                                          const Text(
-                                            'About GreenVision',
-                                            style: TextStyle(
-                                              color: AppColorsLight.teksThird,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(right: 20),
-                                        child: Icon(
-                                          Icons.arrow_forward_ios_outlined,
-                                          color: AppColorsLight.teksThird,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            SizedBox(
-                              width: 360,
-                              height: 55,
-                              child: InkWell(
-                                onTap: () {
-                                  // Share.share('');
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(8, 8),
-                                        color: Color(0xFFD4D4D4),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 20),
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: 25,
-                                              height: 25,
-                                              child: ColorFiltered(
-                                                colorFilter: const ColorFilter.mode(
-                                                  AppColorsLight.teksThird,
-                                                  BlendMode.srcIn,
-                                                ),
-                                                child: Image.asset('assets/icons/share.png'),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(width: 12),
-                                          const Text(
-                                            'Share App',
-                                            style: TextStyle(
-                                              color: AppColorsLight.teksThird,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(right: 20),
-                                        child: Icon(
-                                          Icons.arrow_forward_ios_outlined,
-                                          color: AppColorsLight.teksThird,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            SizedBox(
-                              width: 360,
-                              height: 55,
-                              child: InkWell(
-                                onTap: () {
-                                  controller.showLogoutConfirmationDialog(context);
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(8, 8),
-                                        color: Color(0xFFD4D4D4),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 20),
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: 25,
-                                              height: 25,
-                                              child: ColorFiltered(
-                                                colorFilter: const ColorFilter.mode(
-                                                  AppColorsLight.teksThird,
-                                                  BlendMode.srcIn,
-                                                ),
-                                                child: Image.asset('assets/icons/logout.png'),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(width: 12),
-                                          const Text(
-                                            'Log out',
-                                            style: TextStyle(
-                                              color: AppColorsLight.teksThird,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(right: 20),
-                                        child: Icon(
-                                          Icons.arrow_forward_ios_outlined,
-                                          color: AppColorsLight.teksThird,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      )
-                    ],
+                        const SizedBox(height: 30),
+                        SizedBox(
+                          width: 360,
+                          height: 55,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                PageRouteBuilder(
+                                  pageBuilder: (
+                                      context,
+                                      animation,
+                                      secondaryAnimation) => const SecurityPage(),
+                                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                    const begin = 0.0;
+                                    const end = 1.0;
+                                    const curve = Curves.easeInOut;
+
+                                    final tween = Tween(
+                                        begin: begin,
+                                        end: end
+                                    )
+                                        .chain(CurveTween(curve: curve));
+                                    final opacityAnimation = animation.drive(tween);
+
+                                    return FadeTransition(
+                                      opacity: opacityAnimation,
+                                      child: child,
+                                    );
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: AppColorsLight.primary,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(-8, -8),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: 25,
+                                          height: 25,
+                                          child: ColorFiltered(
+                                            colorFilter: const ColorFilter.mode(
+                                              AppColorsLight.teksThird,
+                                              BlendMode.srcIn,
+                                            ),
+                                            child: Image.asset('assets/icons/security.png'),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      const Text(
+                                        'Security',
+                                        style: TextStyle(
+                                          color: AppColorsLight.teksThird,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 20),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: AppColorsLight.teksThird,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        SizedBox(
+                          width: 360,
+                          height: 55,
+                          child: InkWell(
+                            onTap: () {
+
+                              Navigator.of(context).push(
+                                PageRouteBuilder(
+                                  pageBuilder: (
+                                      context,
+                                      animation,
+                                      secondaryAnimation) => const AboutScreen(),
+                                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                    const begin = 0.0;
+                                    const end = 1.0;
+                                    const curve = Curves.easeInOut;
+
+                                    final tween = Tween(
+                                        begin: begin,
+                                        end: end
+                                    )
+                                        .chain(CurveTween(curve: curve));
+                                    final opacityAnimation = animation.drive(tween);
+
+                                    return FadeTransition(
+                                      opacity: opacityAnimation,
+                                      child: child,
+                                    );
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
+
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: AppColorsLight.primary,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(-8, -8),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: 25,
+                                          height: 25,
+                                          child: ColorFiltered(
+                                            colorFilter: const ColorFilter.mode(
+                                              AppColorsLight.teksThird,
+                                              BlendMode.srcIn,
+                                            ),
+                                            child: Image.asset('assets/icons/about.png'),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      const Text(
+                                        'About GreenVision',
+                                        style: TextStyle(
+                                          color: AppColorsLight.teksThird,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 20),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: AppColorsLight.teksThird,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        SizedBox(
+                          width: 360,
+                          height: 55,
+                          child: InkWell(
+                            onTap: () {
+                              // Share.share('');
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: AppColorsLight.primary,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(-8, -8),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: 25,
+                                          height: 25,
+                                          child: ColorFiltered(
+                                            colorFilter: const ColorFilter.mode(
+                                              AppColorsLight.teksThird,
+                                              BlendMode.srcIn,
+                                            ),
+                                            child: Image.asset('assets/icons/share.png'),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      const Text(
+                                        'Share App',
+                                        style: TextStyle(
+                                          color: AppColorsLight.teksThird,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 20),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: AppColorsLight.teksThird,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        SizedBox(
+                          width: 360,
+                          height: 55,
+                          child: InkWell(
+                            onTap: () {
+                              controller.showLogoutConfirmationDialog(context);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: AppColorsLight.primary,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(-8, -8),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: 25,
+                                          height: 25,
+                                          child: ColorFiltered(
+                                            colorFilter: const ColorFilter.mode(
+                                              AppColorsLight.teksThird,
+                                              BlendMode.srcIn,
+                                            ),
+                                            child: Image.asset('assets/icons/logout.png'),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      const Text(
+                                        'Log out',
+                                        style: TextStyle(
+                                          color: AppColorsLight.teksThird,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 20),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: AppColorsLight.teksThird,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                   ),
                 ),
-              )
             ],
           ),
         ),

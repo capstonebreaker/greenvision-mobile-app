@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
 import 'package:green_vision/routes/app_routes_named.dart';
@@ -16,13 +15,13 @@ class ComunityPage extends StatelessWidget {
           onPressed: () {
             Get.toNamed(AppRoutesNamed.pageChatBot);
           },
+      backgroundColor: AppColorsLight.third,
           child: Text(
             "AI",
             style: GoogleFonts.dmSans(fontWeight: FontWeight.bold,
             color: AppColorsLight.primary)
             ,
-          ),
-      backgroundColor: AppColorsLight.third,),
+          ),),
       backgroundColor: AppColorsLight.primary,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -223,7 +222,7 @@ class ComunityPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 38,
                     ),
                     Stack(
@@ -400,7 +399,7 @@ class ComunityPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 38,
                     ),
                     Stack(
@@ -577,7 +576,7 @@ class ComunityPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 38,
                     ),
                     Stack(
