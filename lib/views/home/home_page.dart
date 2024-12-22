@@ -9,8 +9,10 @@ import 'package:lottie/lottie.dart';
 import '../../controller/article_controller.dart';
 import '../../controller/user_controller.dart';
 import '../../controller/weather_controller.dart';
+import 'detail_article_page.dart';
 
 class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
   final UserController userController = Get.put(UserController());
   final WeatherController weatherController = Get.put(WeatherController());
@@ -23,21 +25,21 @@ class HomePage extends StatelessWidget {
       backgroundColor: AppColorsLight.primary,
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-          const EdgeInsets.only(top: 55, bottom: 92, left: 17, right: 25),
+          padding: const EdgeInsets.only(top: 55, bottom: 25, left: 17, right: 25),
           child: SafeArea(
             child: Column(
               children: [
+                // Header Section
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, ),
-                      child: Container(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: SizedBox(
                           height: 48,
                           width: 49,
                           child: Image.asset('assets/images/avatar/avatar.png')),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Column(
@@ -51,7 +53,7 @@ class HomePage extends StatelessWidget {
                               color: Colors.black,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 2,
                         ),
                         Obx(() => Text(
@@ -61,11 +63,10 @@ class HomePage extends StatelessWidget {
                               color: Colors.black,
                               fontWeight: FontWeight.bold
                           ),
-                        ),
-                        )
+                        ))
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 100,
                     ),
                     Container(
@@ -80,12 +81,12 @@ class HomePage extends StatelessWidget {
                         child: Image.asset('assets/icons/notification.png'),
                       ),
                     )
-
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 46.5,
                 ),
+                // Weather Section
                 Container(
                   width: 340,
                   height: 128,
@@ -106,7 +107,7 @@ class HomePage extends StatelessWidget {
                       ]
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         top: 22, bottom: 21, right: 32.5, left: 32.5),
                     child: Obx(() {
                       final weather = weatherController.weather.value;
@@ -117,15 +118,13 @@ class HomePage extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // Display dynamic current temperature
                                 Text(
-                                  '${weather.temperature}°', // Rounded to 1 decimal
+                                  '${weather.temperature}°',
                                   style: GoogleFonts.sora(
                                       fontSize: 30,
                                       fontWeight: FontWeight.normal,
                                       color: Colors.black),
                                 ),
-                                // Display high and low temperatures
                                 Text(
                                   'H:${weather.highTemperature}°  L:${weather.lowTemperature}°',
                                   style: GoogleFonts.sora(
@@ -133,7 +132,6 @@ class HomePage extends StatelessWidget {
                                       fontWeight: FontWeight.normal,
                                       color: Colors.black),
                                 ),
-                                // Display city name
                                 Text(
                                   weather.cityName,
                                   style: GoogleFonts.sora(
@@ -143,16 +141,15 @@ class HomePage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 80,
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 74,
                                   height: 68,
-                                  // Display the weather animation based on the main condition
                                   child: Lottie.asset(weatherController
                                       .getWeatherAnimation(
                                       weather.mainCondition)),
@@ -170,14 +167,13 @@ class HomePage extends StatelessWidget {
                               color: Colors.red),
                         );
                       } else {
-                        return const CircularProgressIndicator(); // Loading state
+                        return const CircularProgressIndicator();
                       }
                     }),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 46.5,
-
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -194,471 +190,111 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 19,
                 ),
-                Container(
-                    child: Column(
-                      children: [
-                        Container(
+                Obx(() {
+                  if (articleController.isLoading.value) {
+                    return const Center(
+                        child: CircularProgressIndicator(),
+                    );
+                  } else if (articleController.errorMessage.isNotEmpty) {
+                    return Center(
+                      child: Text(
+                        articleController.errorMessage.value,
+                        style: const TextStyle(fontSize: 12, color: Colors.red),
+                      ),
+                    );
+                  } else if (articleController.articles.isEmpty) {
+                    return const Center(child: Text('No articles found.'));
+                  } else {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: articleController.articles.length,
+                      padding: const EdgeInsets.all(8.0),
+                      itemBuilder: (context, index) {
+                        final article = articleController.articles[index];
+                        return Container(
                           width: 340,
                           height: 106,
                           decoration: BoxDecoration(
-                            color: AppColorsLight.cardPrimary,
-                            borderRadius: BorderRadius.circular(
-                                8), // Setting the border radius here
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: AppColorsLight.primary,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 12.0,
+                                  offset: Offset(-8, -8),
+                                  color: Colors.white,
+                                ),
+                                BoxShadow(
+                                    blurRadius: 12.0,
+                                    offset: Offset(8, 8),
+                                    color: Color(0xFFD4D4D4)
+                                )
+                              ]
                           ),
-                          child: Obx(() {
-                            if (articleController.isLoading.value) {
-                              return  const Center(
-                                child: CircularProgressIndicator(), // Loading spinner
-                              );
-                            } else if (articleController.errorMessage.isNotEmpty) {
-                              return Center(
-                                child: Text(
-                                  articleController.errorMessage.value,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.red,
+                          margin: const EdgeInsets.symmetric(vertical: 12.0),
+                          padding: const EdgeInsets.all(19.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: Image.network(
+                                    article['img'] ?? 'https://via.placeholder.com/75',
+                                    width: 70,
+                                    height: 70,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
-                              );
-                            } else if (articleController.articles.isEmpty) {
-                              return const Center(
-                                child: Text('No articles found.'),
-                              );
-                            } else {
-                              final article = articleController.articles[0];
-                              return Container(
-                                width: 325,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                          blurRadius: 12.0,
-                                          offset: Offset(8, 8),
-                                          color: Color(0xFFD4D4D4)
-                                      )
-                                    ]
-                                ),
-                                padding: const EdgeInsets.all(19.0),
-                                child: Row(
+                              ),
+                              const SizedBox(width: 14.0),
+                              Expanded(
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // Gambar dari API
-                                    Center(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        child: Image.network(
-                                          article['img'] ?? 'https://via.placeholder.com/75',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
-                                        ),
+                                    Text(
+                                      article['title'] ?? 'No Title',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
                                       ),
                                     ),
-                                    const SizedBox(width: 14.0),
-                                    // Teks di sebelah kanan gambar
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            article['title'] ?? 'No Title',
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black87,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            article['deskripsi'] ?? 'No description available.',
-                                            style: const TextStyle(
-                                              fontSize: 7,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          GestureDetector(
-                                            onTap: () {
-
-                                            },
-                                            child: const Text(
-                                              'Baca selengkapnya >',
-                                              style: TextStyle(
-                                                fontSize: 8,
-                                                color: Colors.green,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      _getShortDescription(article['deskripsi'] ?? 'No description available.'),
+                                      style: const TextStyle(
+                                        fontSize: 9,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.to(() => DetailArticlePage(articleData: article));
+                                        },
+                                      child: const Text(
+                                        'Baca selengkapnya >',
+                                        style: TextStyle(
+                                          fontSize: 8,
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              );
-                            }
-                          }),
-
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          width: 340,
-                          height: 106,
-                          decoration: BoxDecoration(
-                            color: AppColorsLight.cardPrimary,
-                            borderRadius: BorderRadius.circular(
-                                8),
+                              ),
+                            ],
                           ),
-                          child: Obx(() {
-                            if (articleController.isLoading.value) {
-                              return const Center(
-                                child: CircularProgressIndicator(), // Loading spinner
-                              );
-                            } else if (articleController.errorMessage.isNotEmpty) {
-                              return Center(
-                                child: Text(
-                                  articleController.errorMessage.value,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              );
-                            } else if (articleController.articles.isEmpty) {
-                              return const Center(
-                                child: Text('No articles found.'),
-                              );
-                            } else {
-                              final article = articleController.articles[0];
-                              return Container(
-                                width: 325,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                          blurRadius: 12.0,
-                                          offset: Offset(8, 8),
-                                          color: Color(0xFFD4D4D4)
-                                      )
-                                    ]
-
-
-                                ),
-                                padding: const EdgeInsets.all(19.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Gambar dari API
-                                    Center(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        child: Image.network(
-                                          article['img'] ?? 'https://via.placeholder.com/75',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 14.0),
-                                    // Teks di sebelah kanan gambar
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            article['title'] ?? 'No Title',
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black87,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            article['deskripsi'] ?? 'No description available.',
-                                            style: const TextStyle(
-                                              fontSize: 7,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          GestureDetector(
-                                            onTap: () {
-
-                                            },
-                                            child: const Text(
-                                              'Baca selengkapnya >',
-                                              style: TextStyle(
-                                                fontSize: 8,
-                                                color: Colors.green,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }
-                          }),
-
-                        ),
-
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          width: 340,
-                          height: 106,
-                          decoration: BoxDecoration(
-                            color: AppColorsLight.cardPrimary,
-                            borderRadius: BorderRadius.circular(
-                                8),
-                          ),
-                          child: Obx(() {
-                            if (articleController.isLoading.value) {
-                              return const Center(
-                                child: CircularProgressIndicator(), // Loading spinner
-                              );
-                            } else if (articleController.errorMessage.isNotEmpty) {
-                              return Center(
-                                child: Text(
-                                  articleController.errorMessage.value,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              );
-                            } else if (articleController.articles.isEmpty) {
-                              return const Center(
-                                child: Text('No articles found.'),
-                              );
-                            } else {
-                              final article = articleController.articles[0];
-                              return Container(
-                                width: 325,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                          blurRadius: 12.0,
-                                          offset: Offset(8, 8),
-                                          color: Color(0xFFD4D4D4)
-                                      )
-                                    ]
-
-
-                                ),
-                                padding: const EdgeInsets.all(19.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Gambar dari API
-                                    Center(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        child: Image.network(
-                                          article['img'] ?? 'https://via.placeholder.com/75',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 14.0),
-                                    // Teks di sebelah kanan gambar
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            article['title'] ?? 'No Title',
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black87,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            article['deskripsi'] ?? 'No description available.',
-                                            style: const TextStyle(
-                                              fontSize: 7,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          GestureDetector(
-                                            onTap: () {
-
-                                            },
-                                            child: const Text(
-                                              'Baca selengkapnya >',
-                                              style: TextStyle(
-                                                fontSize: 8,
-                                                color: Colors.green,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }
-                          }),
-
-                        ),
-
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          width: 340,
-                          height: 106,
-                          decoration: BoxDecoration(
-                            color: AppColorsLight.cardPrimary,
-                            borderRadius: BorderRadius.circular(
-                                8),
-                          ),
-                          child: Obx(() {
-                            if (articleController.isLoading.value) {
-                              return const Center(
-                                child: CircularProgressIndicator(), // Loading spinner
-                              );
-                            } else if (articleController.errorMessage.isNotEmpty) {
-                              return Center(
-                                child: Text(
-                                  articleController.errorMessage.value,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              );
-                            } else if (articleController.articles.isEmpty) {
-                              return const Center(
-                                child: Text('No articles found.'),
-                              );
-                            } else {
-                              final article = articleController.articles[0];
-                              return Container(
-                                width: 325,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    color: AppColorsLight.primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 12.0,
-                                        offset: Offset(-8, -8),
-                                        color: Colors.white,
-                                      ),
-                                      BoxShadow(
-                                          blurRadius: 12.0,
-                                          offset: Offset(8, 8),
-                                          color: Color(0xFFD4D4D4)
-                                      )
-                                    ]
-
-
-                                ),
-                                padding: const EdgeInsets.all(19.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Gambar dari API
-                                    Center(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        child: Image.network(
-                                          article['img'] ?? 'https://via.placeholder.com/75',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 14.0),
-                                    // Teks di sebelah kanan gambar
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            article['title'] ?? 'No Title',
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black87,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            article['deskripsi'] ?? 'No description available.',
-                                            style: const TextStyle(
-                                              fontSize: 7,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          GestureDetector(
-                                            onTap: () {
-
-                                            },
-                                            child: const Text(
-                                              'Baca selengkapnya >',
-                                              style: TextStyle(
-                                                fontSize: 8,
-                                                color: Colors.green,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }
-                          }),
-
-                        ),
-                      ],
-                    )),
+                        );
+                      },
+                    );
+                  }
+                }),
               ],
             ),
           ),
@@ -666,5 +302,13 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavBar(),
     );
+  }
+  String _getShortDescription(String description) {
+    final words = description.split(' ');
+    if (words.length > 10) {
+      return '${words.sublist(0, 10).join(' ')}...';
+    } else {
+      return description;
+    }
   }
 }
