@@ -5,760 +5,194 @@ import 'package:green_vision/constants/colors.dart';
 import 'package:green_vision/routes/app_routes_named.dart';
 import 'package:green_vision/shared/widgets/buttom_nav_bar.dart';
 
+import '../../controller/comunity_controller.dart';
+import 'CreateComunity_page.dart';
+
 class ComunityPage extends StatelessWidget {
   const ComunityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final communityController = Get.put(ComunityController());
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.toNamed(AppRoutesNamed.pageChatBot);
-          },
-      backgroundColor: AppColorsLight.third,
-          child: Text(
-            "AI",
-            style: GoogleFonts.dmSans(fontWeight: FontWeight.bold,
-            color: AppColorsLight.primary)
-            ,
-          ),),
+        onPressed: () {
+          Get.to(() => const CreatecomunityPage());
+        },
+        backgroundColor: AppColorsLight.third,
+        child: Image.asset(
+            'assets/icons/create.png',
+          width: 22,
+          height: 22,
+        ),
+      ),
       backgroundColor: AppColorsLight.primary,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Center(
-                child: Container(
-                  height: 38,
-                  width: 335,
-                  child: Center(
-                    child: Text(
-                      "Comunity",
-                      style: GoogleFonts.dmSans(
+        child: Obx(() {
+          if (communityController.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (communityController.errorMessage.isNotEmpty) {
+            return Center(
+              child: Text(
+                communityController.errorMessage.value,
+                style: GoogleFonts.dmSans(
+                  fontSize: 14,
+                  color: Colors.red,
+                ),
+              ),
+            );
+          }
+
+          final communities = communityController.communities;
+
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                Center(
+                  child: Container(
+                    height: 38,
+                    width: 335,
+                    child: Center(
+                      child: Text(
+                        "Comunity",
+                        style: GoogleFonts.dmSans(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
-                          color: Colors.black),
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Center(
-                child: Column(
-                  children: [
-                    Stack(
+                const SizedBox(height: 10),
+                ...communities.map((community) => Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
                       children: [
-                        Container(
-                          width: 360,
-                          height: 317,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: AppColorsLight.primary,
-                              boxShadow: const [
-                                BoxShadow(
-                                  blurRadius: 12.0,
-                                  offset: Offset(-8, -8),
-                                  color: Colors.white,
-                                ),
-                                BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
-                                    color: Color(0xFFD4D4D4)
-                                )
-                              ]
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(14.0),
-                            child: Column(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                        Stack(
+                          children: [
+                            Container(
+                              width: 360,
+                              height: 317,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: AppColorsLight.primary,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    offset: Offset(-4, -4),
+                                    color: Colors.white,
+                                  ),
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    offset: Offset(4, 4),
+                                    color: Color(0xFFD4D4D4),
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(14.0),
+                                child: Row(
                                   children: [
-                                    SizedBox(
-                                      height: 150,
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 50, right: 20),
+                                      child: SizedBox(
+                                          height: 28,
+                                          width: 29,
+                                          child: Image.asset('assets/images/avatar/image.png')),
                                     ),
-                                    Row(
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          height: 23,
-                                          width: 23,
-                                          child: Image.asset(
-                                              'assets/images/avatar/david.png'),
+                                        const SizedBox(height: 150),
+                                        Text(
+                                          community['name'] ?? "Unknown",
+                                          style: GoogleFonts.dmSans(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColorsLight.teksPrimary,
+                                          ),
                                         ),
-                                        SizedBox(
-                                          width: 10,
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          community['description'] ?? "No description",
+                                          style: GoogleFonts.dmSans(
+                                            fontSize: 7,
+                                            fontWeight: FontWeight.normal,
+                                            color: AppColorsLight.teksThird,
+                                          ),
                                         ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                        const SizedBox(height: 20),
+                                        Row(
                                           children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text("BumsYa ",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 11,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: Colors.black)),
-                                                SizedBox(width: 10),
-                                                Text("•",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.black)),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text("Indonesia",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 8,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        color: Colors.black87)),
-                                              ],
+                                            const Icon(Icons.ac_unit_sharp, color: Colors.grey, size: 13),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              "12rb",
+                                              style: GoogleFonts.dmSans(
+                                                fontSize: 8,
+                                                fontWeight: FontWeight.normal,
+                                                color: Colors.grey,
+                                              ),
                                             ),
-                                            Text("2 hr ago",
-                                                style: GoogleFonts.dmSans(
-                                                    fontSize: 6,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.black87)),
+                                            const SizedBox(width: 7),
+                                            const Icon(Icons.share, color: Colors.grey, size: 13),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              "160",
+                                              style: GoogleFonts.dmSans(
+                                                fontSize: 8,
+                                                fontWeight: FontWeight.normal,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 7),
+                                            const Icon(Icons.chat, color: Colors.grey, size: 13),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              "100",
+                                              style: GoogleFonts.dmSans(
+                                                fontSize: 8,
+                                                fontWeight: FontWeight.normal,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Bantu identifikasi masalah padi",
-                                        style: GoogleFonts.dmSans(
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColorsLight.teksPrimary)),
-                                    SizedBox(
-                                      height:10,
-                                    ),
-                                    Text(
-                                        "Tips for designing and building a consistent design system. Without doubt, I get asked about design systems more than anything else. So, having spent the majority of the past few years thinking about how to...",
-                                        style: GoogleFonts.dmSans(
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.normal,
-                                            color: AppColorsLight.teksThird)),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.ac_unit_sharp,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("12rb",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Icon(
-                                          Icons.share,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("160",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Icon(
-                                          Icons.chat,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("100",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                        Container(
-                          width: 319,
-                          height: 145,
-                          decoration: BoxDecoration(
-                              color: AppColorsLight.primary,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25))),
+                            Container(
+                              width: 360,
+                              height: 155,
+                              decoration: BoxDecoration(
+                                color: AppColorsLight.primary,
+                                image: DecorationImage(
+                                  image: NetworkImage(community['img'] ?? ''),
+                                  fit: BoxFit.cover,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 38,
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          width: 360,
-                          height: 317,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: AppColorsLight.primary,
-                              boxShadow: const [
-                                BoxShadow(
-                                  blurRadius: 12.0,
-                                  offset: Offset(-8, -8),
-                                  color: Colors.white,
-                                ),
-                                BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
-                                    color: Color(0xFFD4D4D4)
-                                )
-                              ]
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(14.0),
-                            child: Column(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 150,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          height: 23,
-                                          width: 23,
-                                          child: Image.asset(
-                                              'assets/images/avatar/david.png'),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                              children: [
-                                                Text("BumsYa ",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 11,
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        color: Colors.black)),
-                                                SizedBox(width: 10),
-                                                Text("•",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        color: Colors.black)),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text("Indonesia",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 8,
-                                                        fontWeight:
-                                                        FontWeight.normal,
-                                                        color: Colors.black87)),
-                                              ],
-                                            ),
-                                            Text("2 hr ago",
-                                                style: GoogleFonts.dmSans(
-                                                    fontSize: 6,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.black87)),
-                                          ],
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Bantu identifikasi masalah padi",
-                                        style: GoogleFonts.dmSans(
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColorsLight.teksPrimary)),
-                                    SizedBox(
-                                      height:10,
-                                    ),
-                                    Text(
-                                        "Tips for designing and building a consistent design system. Without doubt, I get asked about design systems more than anything else. So, having spent the majority of the past few years thinking about how to...",
-                                        style: GoogleFonts.dmSans(
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.normal,
-                                            color: AppColorsLight.teksThird)),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.ac_unit_sharp,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("12rb",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Icon(
-                                          Icons.share,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("160",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Icon(
-                                          Icons.chat,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("100",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 319,
-                          height: 145,
-                          decoration: BoxDecoration(
-                              color: AppColorsLight.primary,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25))),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 38,
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          width: 360,
-                          height: 317,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: AppColorsLight.primary,
-                              boxShadow: const [
-                                BoxShadow(
-                                  blurRadius: 12.0,
-                                  offset: Offset(-8, -8),
-                                  color: Colors.white,
-                                ),
-                                BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
-                                    color: Color(0xFFD4D4D4)
-                                )
-                              ]
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(14.0),
-                            child: Column(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 150,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          height: 23,
-                                          width: 23,
-                                          child: Image.asset(
-                                              'assets/images/avatar/david.png'),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                              children: [
-                                                Text("BumsYa ",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 11,
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        color: Colors.black)),
-                                                SizedBox(width: 10),
-                                                Text("•",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        color: Colors.black)),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text("Indonesia",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 8,
-                                                        fontWeight:
-                                                        FontWeight.normal,
-                                                        color: Colors.black87)),
-                                              ],
-                                            ),
-                                            Text("2 hr ago",
-                                                style: GoogleFonts.dmSans(
-                                                    fontSize: 6,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.black87)),
-                                          ],
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Bantu identifikasi masalah padi",
-                                        style: GoogleFonts.dmSans(
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColorsLight.teksPrimary)),
-                                    SizedBox(
-                                      height:10,
-                                    ),
-                                    Text(
-                                        "Tips for designing and building a consistent design system. Without doubt, I get asked about design systems more than anything else. So, having spent the majority of the past few years thinking about how to...",
-                                        style: GoogleFonts.dmSans(
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.normal,
-                                            color: AppColorsLight.teksThird)),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.ac_unit_sharp,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("12rb",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Icon(
-                                          Icons.share,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("160",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Icon(
-                                          Icons.chat,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("100",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 319,
-                          height: 145,
-                          decoration: BoxDecoration(
-                              color: AppColorsLight.primary,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25))),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 38,
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          width: 360,
-                          height: 317,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: AppColorsLight.primary,
-                              boxShadow: const [
-                                BoxShadow(
-                                  blurRadius: 12.0,
-                                  offset: Offset(-8, -8),
-                                  color: Colors.white,
-                                ),
-                                BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
-                                    color: Color(0xFFD4D4D4)
-                                )
-                              ]
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(14.0),
-                            child: Column(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 150,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          height: 23,
-                                          width: 23,
-                                          child: Image.asset(
-                                              'assets/images/avatar/david.png'),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                              children: [
-                                                Text("BumsYa ",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 11,
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        color: Colors.black)),
-                                                SizedBox(width: 10),
-                                                Text("•",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        color: Colors.black)),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text("Indonesia",
-                                                    style: GoogleFonts.dmSans(
-                                                        fontSize: 8,
-                                                        fontWeight:
-                                                        FontWeight.normal,
-                                                        color: Colors.black87)),
-                                              ],
-                                            ),
-                                            Text("2 hr ago",
-                                                style: GoogleFonts.dmSans(
-                                                    fontSize: 6,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.black87)),
-                                          ],
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Bantu identifikasi masalah padi",
-                                        style: GoogleFonts.dmSans(
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColorsLight.teksPrimary)),
-                                    SizedBox(
-                                      height:10,
-                                    ),
-                                    Text(
-                                        "Tips for designing and building a consistent design system. Without doubt, I get asked about design systems more than anything else. So, having spent the majority of the past few years thinking about how to...",
-                                        style: GoogleFonts.dmSans(
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.normal,
-                                            color: AppColorsLight.teksThird)),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.ac_unit_sharp,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("12rb",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Icon(
-                                          Icons.share,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("160",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Icon(
-                                          Icons.chat,
-                                          color: Colors.grey,
-                                          size: 13,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text("100",
-                                            style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey)),
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 319,
-                          height: 145,
-                          decoration: BoxDecoration(
-                              color: AppColorsLight.primary,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25))),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+                  ),
+                )),
+              ],
+            ),
+          );
+        }),
       ),
       bottomNavigationBar: BottomNavBar(),
     );

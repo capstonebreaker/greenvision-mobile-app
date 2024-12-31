@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
@@ -9,9 +11,9 @@ class AboutScreen extends StatelessWidget {
     const boldStyle = TextStyle(fontSize: 14, height: 1.5, fontWeight: FontWeight.bold);
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: AppColorsLight.primary,
       appBar: AppBar(
-        backgroundColor: Colors.grey[50],
+        backgroundColor: AppColorsLight.primary ,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),

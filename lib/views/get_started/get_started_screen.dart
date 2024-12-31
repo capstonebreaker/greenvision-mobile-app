@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
 import 'package:green_vision/views/login/login_page.dart';
@@ -43,7 +44,7 @@ class GetStartedScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.sora(
                             fontSize: 32,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: Colors.black,
                           ),
                         ),
@@ -93,15 +94,17 @@ class GetStartedScreen extends StatelessWidget {
                                 color: AppColorsLight.third,
                                 boxShadow: const [
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
-                                    color: Colors.white,
+                                      color: Color(0xFFffffff),
+                                      offset: Offset(-2, -2),
+                                      blurRadius: 1,
+                                    // inset: true
                                   ),
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
-                                    color: Color(0xFFD4D4D4),
-                                  ),
+                                      color: Color(0xFFbebebe),
+                                      offset: Offset(2, 2),
+                                      blurRadius: 1,
+                                    // inset: true
+                                  )
                                 ],
                               ),
                               child: Center(

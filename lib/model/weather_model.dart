@@ -17,7 +17,7 @@ class Weather {
   factory Weather.fromJson(Map<String, dynamic> json) {
     return Weather(
       cityName: json['name'],
-      temperature: json['main']['temp'].toDouble(),
+      temperature: json['main'] ['temp'].toDouble(),
       highTemperature:
       json['main']['temp_max'].toDouble(), // High temp from API
       lowTemperature: json['main']['temp_min'].toDouble(), // Low temp from API

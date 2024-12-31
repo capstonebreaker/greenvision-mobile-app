@@ -87,8 +87,8 @@ class ProfilePage extends StatelessWidget {
                       color: AppColorsLight.primary,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 12.0,
-                          offset: Offset(-8, -8),
+                          blurRadius: 4.0,
+                          offset: Offset(-4, -4),
                           color: Colors.white,
                           // inset: true
                         ),
@@ -121,7 +121,7 @@ class ProfilePage extends StatelessWidget {
                                   pageBuilder: (
                                       context,
                                       animation,
-                                      secondaryAnimation) => const EditProfilePage(),
+                                      secondaryAnimation) => EditProfilePage(),
                                   transitionsBuilder: (context, animation, secondaryAnimation, child) {
                                     const begin = 0.0;
                                     const end = 1.0;
@@ -145,17 +145,17 @@ class ProfilePage extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(10),
                                 color: AppColorsLight.primary,
                                 boxShadow: const [
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(-4, -4),
                                     color: Colors.white,
                                   ),
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(4, 4),
                                     color: Color(0xFFD4D4D4),
                                   ),
                                 ],
@@ -240,17 +240,17 @@ class ProfilePage extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(10),
                                 color: AppColorsLight.primary,
                                 boxShadow: const [
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(-4, -4),
                                     color: Colors.white,
                                   ),
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(4, 4),
                                     color: Color(0xFFD4D4D4),
                                   ),
                                 ],
@@ -337,17 +337,17 @@ class ProfilePage extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(10),
                                 color: AppColorsLight.primary,
                                 boxShadow: const [
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(-4, -4),
                                     color: Colors.white,
                                   ),
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(4, 4),
                                     color: Color(0xFFD4D4D4),
                                   ),
                                 ],
@@ -407,17 +407,17 @@ class ProfilePage extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(10),
                                 color: AppColorsLight.primary,
                                 boxShadow: const [
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(-4, -4),
                                     color: Colors.white,
                                   ),
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(4, 4),
                                     color: Color(0xFFD4D4D4),
                                   ),
                                 ],
@@ -477,17 +477,17 @@ class ProfilePage extends StatelessWidget {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(10),
                                 color: AppColorsLight.primary,
                                 boxShadow: const [
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(-4, -4),
                                     color: Colors.white,
                                   ),
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
+                                    blurRadius: 3.0,
+                                    offset: Offset(4, 4),
                                     color: Color(0xFFD4D4D4),
                                   ),
                                 ],
