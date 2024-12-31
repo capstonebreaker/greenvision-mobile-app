@@ -28,16 +28,16 @@ class CustomTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: const [
           BoxShadow(
+            blurRadius: 4,
+            offset: Offset(-6, -6),
             color: Colors.white,
-            offset: Offset(-4, -4),
-            blurRadius: 8,
-            inset: true,
+            inset: true
           ),
           BoxShadow(
+            blurRadius: 4,
+            offset: Offset(6, 6),
             color: Color(0xFFD4D4D4),
-            offset: Offset(4, 4),
-            blurRadius: 8,
-            inset: true,
+            inset: true
           ),
         ],
       ),

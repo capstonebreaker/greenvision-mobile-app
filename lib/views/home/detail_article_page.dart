@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+
 class DetailArticlePage extends StatelessWidget {
   final Map<String, dynamic> articleData;
 
@@ -15,9 +17,9 @@ class DetailArticlePage extends StatelessWidget {
     final String createdAt = articleData['created_at'] ?? 'Tanggal tidak tersedia';
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: AppColorsLight.primary,
       appBar: AppBar(
-        backgroundColor: Colors.grey[50],
+        backgroundColor: AppColorsLight.primary,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -36,15 +38,32 @@ class DetailArticlePage extends StatelessWidget {
               style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const SizedBox(height: 15),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                imageUrl,
-                width: double.infinity,
-                height: 200,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) =>
-                const Icon(Icons.broken_image, size: 100),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 5.0,
+                    offset: Offset(-5, -5),
+                    color: Colors.white,
+                  ),
+                  BoxShadow(
+                    blurRadius: 5.0,
+                    offset: Offset(4, 4),
+                    color: Color(0xFF575757),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  imageUrl,
+                  width: double.infinity,
+                  height: 200,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                  const Icon(Icons.broken_image, size: 100),
+                ),
               ),
             ),
             const SizedBox(height: 26),

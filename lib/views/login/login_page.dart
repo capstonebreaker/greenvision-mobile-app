@@ -67,6 +67,9 @@ class LoginPage extends StatelessWidget {
                             leadingIconPath: 'assets/icons/mail.png',
                           ),
                         ),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 20, right: 24, left: 24, bottom: 0),
@@ -91,13 +94,13 @@ class LoginPage extends StatelessWidget {
                                 color: AppColorsLight.primary,
                                 boxShadow: const [
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(-8, -8),
+                                    blurRadius: 4,
+                                    offset: Offset(-4, -4),
                                     color: Colors.white,
                                   ),
                                   BoxShadow(
-                                    blurRadius: 12.0,
-                                    offset: Offset(8, 8),
+                                    blurRadius: 4,
+                                    offset: Offset(4, 4),
                                     color: Color(0xFFD4D4D4),
                                   ),
                                 ],

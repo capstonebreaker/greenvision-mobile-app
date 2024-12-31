@@ -39,17 +39,17 @@ class WeatherController extends GetxController {
       case 'haze':
       case 'dust':
       case 'fog':
-        return 'assets/json/clouds.json';
+        return 'assets/json/clouds1.json';
       case 'rain':
       case 'drizzle':
       case 'shower rain':
-        return 'assets/json/rainy.json';
+        return 'assets/json/rainy1.json';
       case 'thunderstorm':
-        return 'assets/json/thunder.json';
+        return 'assets/json/thunder1.json';
       case 'clear':
-        return 'assets/json/sunny.json';
+        return 'assets/json/sunny1.json';
       default:
-        return 'assets/json/sunny.json';
+        return 'assets/json/sunny1.json';
     }
   }
 }

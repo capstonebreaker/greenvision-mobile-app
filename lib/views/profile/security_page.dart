@@ -125,7 +125,7 @@ class SecurityPage extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 16.0),
               child: Text(
                 'Ketentuan Lain\n'
-                    'Dengan menggunakan aplikasi Padi Safe, Anda menyetujui pengumpulan, penyimpanan, dan penggunaan data pribadi Anda sebagaimana diuraikan dalam kebijakan ini. Kebijakan ini dapat berubah sewaktu-waktu, dan Kami akan memberi tahu Anda tentang pembaruan melalui aplikasi atau email.',
+                    'Dengan menggunakan aplikasi GreenVision, Anda menyetujui pengumpulan, penyimpanan, dan penggunaan data pribadi Anda sebagaimana diuraikan dalam kebijakan ini. Kebijakan ini dapat berubah sewaktu-waktu, dan Kami akan memberi tahu Anda tentang pembaruan melalui aplikasi atau email.',
                 style: textStyle,
                 textAlign: TextAlign.justify,
               ),
