@@ -45,6 +45,8 @@ class ImageUploadPage extends StatelessWidget {
                       children: [
                         Text('Prediction: ${controller.prediction.value}',
                         style: TextStyle(fontSize: 20)),
+                        Text('Accuration: ${controller.confidence.value}',
+                        style: TextStyle(fontSize: 20)),
                         ElevatedButton(
                           onPressed: () {
                             Get.toNamed(AppRoutesNamed.pageStore,);
