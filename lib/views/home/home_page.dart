@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
 import 'package:green_vision/shared/widgets/buttom_nav_bar.dart';
+import 'package:html/parser.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../controller/article_controller.dart';
@@ -18,14 +19,14 @@ class HomePage extends StatelessWidget {
   final WeatherController weatherController = Get.put(WeatherController());
   final ArticleController articleController = Get.put(ArticleController());
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColorsLight.primary,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 55, bottom: 25, left: 25, right: 25),
+          padding:
+              const EdgeInsets.only(top: 55, bottom: 25, left: 25, right: 25),
           child: SafeArea(
             child: Column(
               children: [
@@ -56,13 +57,12 @@ class HomePage extends StatelessWidget {
                           width: 2,
                         ),
                         Obx(() => Text(
-                          userController.username.value,
-                          style: GoogleFonts.dmSans(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ))
+                              userController.username.value,
+                              style: GoogleFonts.dmSans(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ))
                       ],
                     ),
                     const SizedBox(
@@ -96,15 +96,12 @@ class HomePage extends StatelessWidget {
                         BoxShadow(
                             color: Color(0xFFffffff),
                             offset: Offset(-2, -2),
-                            blurRadius: 2
-                        ),
+                            blurRadius: 2),
                         BoxShadow(
                             color: Color(0xFFbebebe),
                             offset: Offset(2, 2),
-                            blurRadius: 2
-                        )
-                      ]
-                  ),
+                            blurRadius: 2)
+                      ]),
                   child: Padding(
                     padding: const EdgeInsets.only(
                         top: 10, bottom: 10, right: 19.5, left: 31.5),
@@ -125,19 +122,16 @@ class HomePage extends StatelessWidget {
                                         fontSize: 40,
                                         fontWeight: FontWeight.bold,
                                         color: AppColorsLight.primary,
-                                    shadows: [
-                                      const BoxShadow(
-                                        color: Color(0xFFffffff),
-                                        offset: Offset(-1.5, -1.5),
-                                        blurRadius: 2
-                                      ),
-                                      const BoxShadow(
-                                          color: Color(0xFFbebebe),
-                                          offset: Offset(1.5, 1.5),
-                                          blurRadius: 2
-                                      )
-                                    ]
-                                    ),
+                                        shadows: [
+                                          const BoxShadow(
+                                              color: Color(0xFFffffff),
+                                              offset: Offset(-1.5, -1.5),
+                                              blurRadius: 2),
+                                          const BoxShadow(
+                                              color: Color(0xFFbebebe),
+                                              offset: Offset(1.5, 1.5),
+                                              blurRadius: 2)
+                                        ]),
                                   ),
 
                                   // Text(
@@ -171,15 +165,12 @@ class HomePage extends StatelessWidget {
                                           const BoxShadow(
                                               color: Color(0xFFffffff),
                                               offset: Offset(-1, -1),
-                                              blurRadius: 0.5
-                                          ),
+                                              blurRadius: 0.5),
                                           const BoxShadow(
                                               color: Color(0xFFbebebe),
                                               offset: Offset(1, 1),
-                                              blurRadius: 0.5
-                                          )
-                                        ]
-                                    ),
+                                              blurRadius: 0.5)
+                                        ]),
                                   ),
                                 ],
                               ),
@@ -193,15 +184,16 @@ class HomePage extends StatelessWidget {
                                 SizedBox(
                                   width: 100,
                                   height: 100,
-                                  child: Lottie.asset(weatherController
-                                      .getWeatherAnimation(
-                                      weather.mainCondition)),
+                                  child: Lottie.asset(
+                                      weatherController.getWeatherAnimation(
+                                          weather.mainCondition)),
                                 ),
                               ],
                             )
                           ],
                         );
-                      } else if (weatherController.errorMessage.value.isNotEmpty) {
+                      } else if (weatherController
+                          .errorMessage.value.isNotEmpty) {
                         return Text(
                           weatherController.errorMessage.value,
                           style: GoogleFonts.sora(
@@ -229,19 +221,16 @@ class HomePage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                             color: AppColorsLight.teksPrimary,
-                        shadows: [
-                          const BoxShadow(
-                              color: Color(0xFFffffff),
-                              offset: Offset(-1, -1),
-                              blurRadius: 0.5
-                            ),
-                          const BoxShadow(
-                              color: Color(0xFFbebebe),
-                              offset: Offset(1, 1),
-                              blurRadius: 0.5
-                            )
-                          ]
-                        ),
+                            shadows: [
+                              const BoxShadow(
+                                  color: Color(0xFFffffff),
+                                  offset: Offset(-1, -1),
+                                  blurRadius: 0.5),
+                              const BoxShadow(
+                                  color: Color(0xFFbebebe),
+                                  offset: Offset(1, 1),
+                                  blurRadius: 0.5)
+                            ]),
                       ),
                     ),
                   ],
@@ -249,7 +238,7 @@ class HomePage extends StatelessWidget {
                 Obx(() {
                   if (articleController.isLoading.value) {
                     return const Center(
-                        child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(),
                     );
                   } else if (articleController.errorMessage.isNotEmpty) {
                     return Center(
@@ -269,10 +258,10 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final article = articleController.articles[index];
                         return GestureDetector(
-                          onTap: (){
-                            Get.to(() => DetailArticlePage(articleData: article)
-                              );
-                            },
+                          onTap: () {
+                            Get.to(
+                                () => DetailArticlePage(articleData: article));
+                          },
                           child: Container(
                             width: 340,
                             height: 106,
@@ -283,17 +272,15 @@ class HomePage extends StatelessWidget {
                                   BoxShadow(
                                       color: Color(0xFFffffff),
                                       offset: Offset(-2, -2),
-                                      blurRadius: 2
-                                  ),
+                                      blurRadius: 2),
                                   BoxShadow(
                                       color: Color(0xFFbebebe),
                                       offset: Offset(2, 2),
-                                      blurRadius: 2
-                                  )
-                                ]
-                            ),
+                                      blurRadius: 2)
+                                ]),
                             margin: const EdgeInsets.symmetric(vertical: 11.0),
-                            padding: const EdgeInsets.symmetric(horizontal: 19.0, vertical: 15.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 19.0, vertical: 15.0),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -301,7 +288,8 @@ class HomePage extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(15.0),
                                     child: Image.network(
-                                      article['img'] ?? 'https://via.placeholder.com/75',
+                                      article['img'] ??
+                                          'https://via.placeholder.com/75',
                                       width: 70,
                                       height: 70,
                                       fit: BoxFit.cover,
@@ -311,30 +299,46 @@ class HomePage extends StatelessWidget {
                                 const SizedBox(width: 14.0),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         article['title']!.split(' ').length > 4
                                             ? '${article['title']!.split(' ').sublist(0, 4).join(' ')}...'
                                             : article['title']!,
-                                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black87),
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black87),
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        article['deskripsi']!.split(' ').length > 10
-                                            ? '${article['deskripsi']!.split(' ').sublist(0, 10).join(' ')}...'
-                                            : article['deskripsi']!,
-                                        style: const TextStyle(fontSize: 9, color: Colors.black54),
+                                        (() {
+                                          final rawText =
+                                              parse(article['deskripsi']!)
+                                                  .body
+                                                  ?.text;
+                                          if (rawText == null) {
+                                            return 'Deskripsi tidak tersedia';
+                                          }
+                                          final words = rawText.split(
+                                              ' ');
+                                          return words.length > 10
+                                              ? '${words.sublist(0, 10).join(' ')}...'
+                                              : rawText;
+                                        })(),
+                                        style: const TextStyle(
+                                            fontSize: 9, color: Colors.black54),
                                       ),
                                       const SizedBox(height: 8),
                                       const Text(
-                                          'Baca selengkapnya >',
-                                          style: TextStyle(
-                                            fontSize: 8,
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        'Baca selengkapnya >',
+                                        style: TextStyle(
+                                          fontSize: 8,
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold,
                                         ),
+                                      ),
                                     ],
                                   ),
                                 ),

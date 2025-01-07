@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
 
 import '../../constants/colors.dart';
 
@@ -15,6 +16,8 @@ class DetailArticlePage extends StatelessWidget {
     final String imageUrl = articleData['img'] ?? 'https://via.placeholder.com/75';
     final String description = articleData['deskripsi'] ?? 'Deskripsi tidak tersedia';
     final String createdAt = articleData['created_at'] ?? 'Tanggal tidak tersedia';
+
+    final String parsedDescription = parse(description).body?.text ?? 'Deskripsi tidak tersedia';
 
     return Scaffold(
       backgroundColor: AppColorsLight.primary,
@@ -67,7 +70,7 @@ class DetailArticlePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 26),
-            Text(description, style: textStyle, textAlign: TextAlign.justify),
+            Text(parsedDescription, style: textStyle, textAlign: TextAlign.justify),
           ],
         ),
       ),
