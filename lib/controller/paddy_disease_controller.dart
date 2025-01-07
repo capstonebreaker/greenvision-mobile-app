@@ -1,14 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:green_vision/api/api_key.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'api_controller.dart';
 
 class PaddyDiseaseController extends GetxController {
-  final String apiKey = API.detectionAPI;
+  final ApiController controller = Get.put(ApiController());
   var image = Rx<File?>(null);
   var prediction = Rx<String?>(null);
   var isUploading = false.obs;
@@ -38,7 +36,7 @@ class PaddyDiseaseController extends GetxController {
 
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse(apiKey),
+      Uri.parse(controller.detectionAPI.value),
     );
     request.files.add(
       await http.MultipartFile.fromPath('file', image.value!.path),

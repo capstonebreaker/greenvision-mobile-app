@@ -1,10 +1,12 @@
 import 'dart:convert';
-import 'package:green_vision/api/api_key.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../controller/api_controller.dart';
+
 class StoreService {
+  final ApiController controller = Get.put(ApiController());
   final String apiUrl = 'https://cloud.gmapsextractor.com/api/v1/search';
-  final String apiKey = API.storeAPI;
 
   Future<Map<String, dynamic>> searchLocations(String query, int page, String ll, String hl, String gl) async {
     // Membuat body request JSON
@@ -22,7 +24,7 @@ class StoreService {
         Uri.parse(apiUrl),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $apiKey', // Menyertakan token API di header
+          'Authorization': 'Bearer ${controller.storeAPI.value}', // Menyertakan token API di header
         },
         body: json.encode(requestBody), // Mengirimkan body dalam format JSON
       );

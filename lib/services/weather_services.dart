@@ -2,27 +2,30 @@ import 'dart:convert';
 
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:green_vision/api/api_key.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../controller/api_controller.dart';
 import '../model/weather_model.dart';
 
 
 
 class WeatherService {
+  final ApiController controller = Get.put(ApiController());
   static const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
-  final String apiKey = API.openWeatherAPI;
+
 
   Future<Weather> getWeather(String cityName) async {
     final encodedCityName = Uri.encodeComponent(cityName);
     final response = await http.get(
-        Uri.parse('$BASE_URL?q=$encodedCityName&appid=$apiKey&units=metric'));
+        Uri.parse('$BASE_URL?q=$encodedCityName&appid=${controller.openWeatherAPI.value}&units=metric'));
 
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));
     } else {
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
+      print('Response body: ${controller.geminiAPI.value}');
       throw Exception('Failed to load weather data');
     }
   }
@@ -30,7 +33,7 @@ class WeatherService {
   Future<Weather> getWeatherByCoordinates(
       double latitude, double longitude) async {
     final response = await http.get(Uri.parse(
-        '$BASE_URL?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric'));
+        '$BASE_URL?lat=$latitude&lon=$longitude&appid=${controller.openWeatherAPI.value}&units=metric'));
 
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));
