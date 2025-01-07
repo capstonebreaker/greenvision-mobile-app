@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:get/get.dart';
 import 'dart:io';
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:green_vision/api/api_key.dart';
 
 
 import '../../constants/colors.dart';
+import '../../controller/api_controller.dart';
 
 class ChatBotPage extends StatefulWidget {
   const ChatBotPage({super.key});
@@ -15,6 +16,7 @@ class ChatBotPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatBotPage> {
+  final ApiController controller = Get.put(ApiController());
   late final GenerativeModel _model;
   late final GenerativeModel _visionModel;
   late final ChatSession _chat;
@@ -28,11 +30,11 @@ class _ChatPageState extends State<ChatBotPage> {
   void initState() {
     _model = GenerativeModel(
       model: 'gemini-1.5-pro',
-      apiKey: API.geminiAPI,
+      apiKey: controller.geminiAPI.value,
     );
     _visionModel = GenerativeModel(
       model: 'gemini-1.5-pro',
-      apiKey: API.geminiAPI,
+      apiKey: controller.geminiAPI.value,
     );
     _chat = _model.startChat();
     super.initState();

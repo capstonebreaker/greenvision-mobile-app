@@ -1,17 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:green_vision/firebase_options.dart';
 import 'package:green_vision/routes/app_routes.dart';
 import 'package:green_vision/routes/app_routes_named.dart';
 import 'controller/user_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   Get.put(UserController());
 
   bool isLoggedIn = await checkLoginStatus();
 
   runApp(MyApp(
-      initialRoutes: isLoggedIn ? AppRoutesNamed.pageGetStarted : AppRoutesNamed.pageLogin));
+      initialRoutes: isLoggedIn ? AppRoutesNamed.pageHome : AppRoutesNamed.pageHome));
 }
 
 Future<bool> checkLoginStatus() async {
