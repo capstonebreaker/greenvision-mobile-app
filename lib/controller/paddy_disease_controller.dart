@@ -9,6 +9,7 @@ class PaddyDiseaseController extends GetxController {
   final ApiController controller = Get.put(ApiController());
   var image = Rx<File?>(null);
   var prediction = Rx<String?>(null);
+  var confidence = Rx<double?>(null);
   var isUploading = false.obs;
   final ImagePicker picker = ImagePicker();
 
@@ -47,6 +48,7 @@ class PaddyDiseaseController extends GetxController {
       final responseData = await response.stream.bytesToString();
       final decodedResponse = jsonDecode(responseData);
       prediction.value = decodedResponse['prediction'];
+      confidence.value = decodedResponse['confidence'];
     } else {
       Get.snackbar('Error', 'Error uploading image');
     }
