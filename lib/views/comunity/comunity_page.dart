@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
-import 'package:green_vision/routes/app_routes_named.dart';
 import 'package:green_vision/shared/widgets/buttom_nav_bar.dart';
-
 import '../../controller/comunity_controller.dart';
+import '../../controller/user_controller.dart';
 import 'CreateComunity_page.dart';
 
 class ComunityPage extends StatelessWidget {
-  const ComunityPage({super.key});
+  final UserController userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class ComunityPage extends StatelessWidget {
         },
         backgroundColor: AppColorsLight.third,
         child: Image.asset(
-            'assets/icons/create.png',
+          'assets/icons/create.png',
           width: 22,
           height: 22,
         ),
@@ -44,121 +43,136 @@ class ComunityPage extends StatelessWidget {
               ),
             );
           }
-
           final communities = communityController.communities;
 
           return SingleChildScrollView(
             child: Column(
               children: [
+                const SizedBox(height: 20),
                 Center(
-                  child: Container(
-                    height: 38,
-                    width: 335,
-                    child: Center(
-                      child: Text(
-                        "Comunity",
-                        style: GoogleFonts.dmSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black,
-                        ),
-                      ),
+                  child: Text(
+                    "Comunity",
+                    style: GoogleFonts.dmSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 ...communities.map((community) => Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+                    child: Stack(
                       children: [
-                        Stack(
-                          children: [
-                            Container(
-                              width: 360,
-                              height: 317,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: AppColorsLight.primary,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    offset: Offset(-4, -4),
-                                    color: Colors.white,
-                                  ),
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    offset: Offset(4, 4),
-                                    color: Color(0xFFD4D4D4),
-                                  ),
-                                ],
+                        Container(
+                          width: 360,
+                          height: 380,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: AppColorsLight.primary,
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Color(0xFFffffff),
+                                  offset: Offset(-2, -2),
+                                  blurRadius: 2
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(14.0),
-                                child: Row(
+                              BoxShadow(
+                                  color: Color(0xFFbebebe),
+                                  offset: Offset(2, 2),
+                                  blurRadius: 2
+                              )
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 360,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    topRight: Radius.circular(25),
+                                  ),
+                                  image: DecorationImage(
+                                    image: NetworkImage(community['img'] ?? ''),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 50, right: 20),
-                                      child: SizedBox(
-                                          height: 28,
-                                          width: 29,
-                                          child: Image.asset('assets/images/avatar/image.png')),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                    Obx(() => Row(
                                       children: [
-                                        const SizedBox(height: 150),
+                                        const SizedBox(
+                                          height: 40,
+                                          width: 40,
+                                          child: CircleAvatar(
+                                            backgroundImage: AssetImage('assets/images/avatar/image.png'),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
                                         Text(
-                                          community['name'] ?? "Unknown",
+                                          userController.username.value,
                                           style: GoogleFonts.dmSans(
-                                            fontSize: 11,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.bold,
-                                            color: AppColorsLight.teksPrimary,
+                                            color: Colors.black,
                                           ),
                                         ),
-                                        const SizedBox(height: 10),
-                                        Text(
-                                          community['description'] ?? "No description",
-                                          style: GoogleFonts.dmSans(
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.normal,
-                                            color: AppColorsLight.teksThird,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 20),
+                                      ],
+                                    )),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      community['title'] ?? "No title",
+                                      style: GoogleFonts.dmSans(
+                                        fontSize: 12,
+                                        color: AppColorsLight.teksThird,
+                                      ),
+                                    ),
+                                    Text(
+                                      community['description']!.split(' ').length > 15
+                                          ? '${community['description']!.split(' ').sublist(0, 15).join(' ')}...'
+                                          : community ['description']!,
+                                      style: GoogleFonts.dmSans(
+                                        fontSize: 12,
+                                        color: AppColorsLight.teksThird,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
                                         Row(
                                           children: [
-                                            const Icon(Icons.ac_unit_sharp, color: Colors.grey, size: 13),
-                                            const SizedBox(width: 5),
+                                            const Icon(Icons.ac_unit_sharp, color: Colors.grey, size: 16),
+                                            const SizedBox(width: 4),
                                             Text(
                                               "12rb",
-                                              style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey,
-                                              ),
+                                              style: GoogleFonts.dmSans(fontSize: 12, color: Colors.black),
                                             ),
-                                            const SizedBox(width: 7),
-                                            const Icon(Icons.share, color: Colors.grey, size: 13),
-                                            const SizedBox(width: 5),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(Icons.chat, size: 16, color: Colors.grey),
+                                            const SizedBox(width: 4),
                                             Text(
                                               "160",
-                                              style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey,
-                                              ),
+                                              style: GoogleFonts.dmSans(fontSize: 12, color: Colors.black),
                                             ),
-                                            const SizedBox(width: 7),
-                                            const Icon(Icons.chat, color: Colors.grey, size: 13),
-                                            const SizedBox(width: 5),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(Icons.share, size: 16, color: Colors.grey),
+                                            const SizedBox(width: 4),
                                             Text(
-                                              "100",
-                                              style: GoogleFonts.dmSans(
-                                                fontSize: 8,
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.grey,
-                                              ),
+                                              "200",
+                                              style: GoogleFonts.dmSans(fontSize: 12, color: Colors.black),
                                             ),
                                           ],
                                         ),
@@ -167,24 +181,9 @@ class ComunityPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            ),
-                            Container(
-                              width: 360,
-                              height: 155,
-                              decoration: BoxDecoration(
-                                color: AppColorsLight.primary,
-                                image: DecorationImage(
-                                  image: NetworkImage(community['img'] ?? ''),
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),
