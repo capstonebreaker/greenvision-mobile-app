@@ -5,6 +5,7 @@ import 'package:green_vision/constants/colors.dart';
 import 'package:green_vision/shared/widgets/buttom_nav_bar.dart';
 import '../../controller/comunity_controller.dart';
 import '../../controller/user_controller.dart';
+import '../chat_bot/chat_bot_page_model.dart';
 import 'CreateComunity_page.dart';
 
 class ComunityPage extends StatelessWidget {
@@ -15,16 +16,35 @@ class ComunityPage extends StatelessWidget {
     final communityController = Get.put(ComunityController());
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(() => const CreatecomunityPage());
-        },
-        backgroundColor: AppColorsLight.third,
-        child: Image.asset(
-          'assets/icons/create.png',
-          width: 22,
-          height: 22,
-        ),
+      floatingActionButton: Stack(
+        children: [
+          Positioned(
+            bottom: 16, // Jarak tombol bawah dari bawah layar
+            right: 16,  // Jarak tombol dari kanan layar
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Floating Button Atas
+                FloatingActionButton(
+                  onPressed: () {
+                    Get.to(() => const CreatecomunityPage());
+                  },
+                  backgroundColor: AppColorsLight.third,
+                  child: const Icon(Icons.group_add),
+                ),
+                const SizedBox(height: 16), // Jarak antara tombol atas dan bawah
+                // Floating Button Bawah
+                FloatingActionButton(
+                  onPressed: () {
+                    Get.to(() => const ChatBotPageModel());
+                  },
+                  backgroundColor: AppColorsLight.third,
+                  child: const Icon(Icons.chat),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       backgroundColor: AppColorsLight.primary,
       body: SafeArea(

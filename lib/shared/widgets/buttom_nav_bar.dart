@@ -35,7 +35,13 @@ class BottomNavBar extends StatelessWidget {
         SizedBox(
           width: 24,
           height: 24,
-          child: Image.asset('assets/images/navbar/home.png'),
+          child: ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              AppColorsLight.teksThird,
+              BlendMode.srcIn,
+            ),
+            child: Image.asset('assets/images/navbar/home.png'),
+          ),
         ),
         SizedBox(
           width: 24,
