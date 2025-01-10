@@ -194,7 +194,6 @@ class ImageUploadPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         controller.uploadImage();
-                        Get.to(ResultsDetectionPage());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,

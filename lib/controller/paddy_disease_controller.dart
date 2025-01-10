@@ -49,6 +49,26 @@ class PaddyDiseaseController extends GetxController {
       final decodedResponse = jsonDecode(responseData);
       prediction.value = decodedResponse['prediction'];
       confidence.value = decodedResponse['confidence'];
+
+      if (prediction.value != 'non-leaf' && confidence.value! >= 50.0) {
+        Get.to(() => ResultsDetectionPage(), arguments: {
+          'prediction': prediction.value,
+          'confidence': confidence.value,
+        });
+      } else {
+        // Tangani hasil 'non-leaf' atau confidence rendah
+        Get.defaultDialog(
+          title: 'Gambar Tidak Valid',
+          middleText: prediction.value == 'non-leaf'
+              ? 'Gambar yang Anda unggah bukan daun.'
+              : 'Kepercayaan hasil deteksi rendah (${confidence.value}%).',
+          textConfirm: 'OK',
+          confirmTextColor: Colors.white,
+          onConfirm: () {
+            Get.back();
+          },
+        );
+      }
     } else {
       Get.snackbar('Error', 'Error uploading image');
     }
