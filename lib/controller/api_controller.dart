@@ -8,6 +8,7 @@ class ApiController extends GetxController {
   var geminiAPI = "".obs;
   var openWeatherAPI = "".obs;
   var storeAPI = "".obs;
+  var chatBotAPI = "".obs;
 
   @override
   void onInit() {
@@ -23,6 +24,7 @@ class ApiController extends GetxController {
       geminiAPI.value = data['geminiAPI'] ?? "Not Available";
       openWeatherAPI.value = data['openWeatherAPI'] ?? "Not Available";
       storeAPI.value = data['storeAPI'] ?? "Not Available";
+      chatBotAPI.value = data['chatBotAPI'] ?? "Not Available";
     } catch (e) {
       print("Error fetching API data: $e");
     }
