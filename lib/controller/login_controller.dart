@@ -17,6 +17,8 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
 
   Future<void> login() async {
+    if (!validateFields()) return;
+
     isLoading.value = true;
     final url = Uri.parse('https://capstone-be-zeta.vercel.app/api/auth/login');
     try {
@@ -29,45 +31,59 @@ class LoginController extends GetxController {
         }),
       );
 
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        String username = data['data']['username'] ?? 'Guest';
-        userController.setUsername(username);
-        userController.setEmail(data['data']['email']);
-        print("Login Response: $data");
+      final data = jsonDecode(response.body);
+      if (response.statusCode == 200 && data['access_token'] != null) {
+        String username = data['data']['username']?.trim() ?? 'Guest';
+        String email = data['data']['email'];
+        String? imgUrl = data['data']['img'];
+        String userId = data['data']['id'];  // Ambil userId dari response
 
-        if (data['access_token'] != null) {
-          Get.offAll(() => HomePage());
-        } else {
-          Get.snackbar(
-            'Login Error',
-            'Unexpected response from server',
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-          );
-        }
+        // Menyimpan data pengguna di UserController
+        userController.setUsername(username);
+        userController.setEmail(email);
+        userController.setUserImage(imgUrl ?? '');
+        userController.setUserId(userId); // Menyimpan userId
+
+        // Navigasi ke HomePage setelah login berhasil
+        Get.offAll(() => HomePage());
       } else {
-        Get.snackbar(
-          'Login Error',
-          'Failed to login. Please check your credentials.',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
+        showErrorSnackbar(data['message'] ?? 'Failed to login. Please check your credentials.');
       }
     } catch (e) {
-      print("Login exception: $e");
-      Get.snackbar(
-        'Login Error',
-        'An unexpected error occurred.',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      logError(e);
+      showErrorSnackbar('An unexpected error occurred.');
     } finally {
       isLoading.value = false;
     }
+  }
+
+  bool validateFields() {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      showErrorSnackbar('Email and password must be filled.');
+      return false;
+    }
+    if (!GetUtils.isEmail(email)) {
+      showErrorSnackbar('Invalid email format.');
+      return false;
+    }
+    return true;
+  }
+
+  void showErrorSnackbar(String message) {
+    Get.snackbar(
+      'Error',
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+    );
+  }
+
+  void logError(dynamic error) {
+    print("Error: $error");
   }
 
   void navigateToRegister() {
@@ -78,13 +94,8 @@ class LoginController extends GetxController {
     try {
       Get.offAllNamed(AppRoutesNamed.pageLogin);
     } catch (e) {
-      Get.snackbar(
-        'Logout Error',
-        'Failed to logout. Please try again.',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      logError(e);
+      showErrorSnackbar('Failed to logout. Please try again.');
     }
   }
 

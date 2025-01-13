@@ -3,8 +3,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
-
-import '../../controller/user_controller.dart';
+import 'package:green_vision/controller/user_controller.dart';
 
 class EditProfilePage extends StatelessWidget {
   final UserController userController = Get.find();
@@ -14,6 +13,20 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    // Text editing controllers for updating user details
+    final TextEditingController usernameController = TextEditingController(text: userController.username.value);
+    final TextEditingController emailController = TextEditingController(text: userController.email.value);
+    final TextEditingController passwordController = TextEditingController(text: userController.password.value);
+
+    // Perbarui nilai ketika TextField berubah
+    usernameController.addListener(() {
+      userController.setUsername(usernameController.text);
+    });
+
+    emailController.addListener(() {
+      userController.setEmail(emailController.text);
+    });
 
     return Scaffold(
       backgroundColor: AppColorsLight.primary,
@@ -39,7 +52,6 @@ class EditProfilePage extends StatelessWidget {
                 blurRadius: 4.0,
                 offset: Offset(-4, -4),
                 color: Colors.white,
-                // inset: true
               ),
             ],
           ),
@@ -58,10 +70,14 @@ class EditProfilePage extends StatelessWidget {
                         width: 2.0,
                       ),
                     ),
-                    child: const CircleAvatar(
-                      radius: 55,
-                      backgroundImage: ExactAssetImage('assets/images/avatar/avatar.png'),
-                    ),
+                    child: Obx(() {
+                      return CircleAvatar(
+                        radius: 55,
+                        backgroundImage: userController.userImage.value.isNotEmpty
+                            ? NetworkImage(userController.userImage.value)
+                            : const AssetImage('assets/images/avatar/avatar.png') as ImageProvider,
+                      );
+                    }),
                   ),
                 ),
               ),
@@ -76,7 +92,7 @@ class EditProfilePage extends StatelessWidget {
                         fontSize: 21,
                         fontWeight: FontWeight.w500,
                       ),
-                    ))
+                    )),
                   ],
                 ),
               ),
@@ -88,9 +104,10 @@ class EditProfilePage extends StatelessWidget {
                     Text(
                       'Nama',
                       style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: AppColorsLight.teksPrimary,),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: AppColorsLight.teksPrimary,
+                      ),
                     ),
                     const SizedBox(height: 5),
                     Container(
@@ -100,20 +117,21 @@ class EditProfilePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(-4, -4),
-                              color: Colors.white,
-                              inset: true
+                            blurRadius: 4,
+                            offset: Offset(-4, -4),
+                            color: Colors.white,
+                            inset: true,
                           ),
                           BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(4, 4),
-                              color: Color(0xFFD4D4D4),
-                              inset: true
+                            blurRadius: 4,
+                            offset: Offset(4, 4),
+                            color: Color(0xFFD4D4D4),
+                            inset: true,
                           ),
                         ],
                       ),
                       child: TextField(
+                        controller: usernameController,
                         decoration: InputDecoration(
                           hintText: 'Username',
                           hintStyle: GoogleFonts.dmSans(
@@ -123,7 +141,8 @@ class EditProfilePage extends StatelessWidget {
                           ),
                           border: InputBorder.none,
                           contentPadding: const EdgeInsets.symmetric(
-                              vertical: 14.0, horizontal: 16.0
+                            vertical: 14.0,
+                            horizontal: 16.0,
                           ),
                         ),
                       ),
@@ -134,7 +153,8 @@ class EditProfilePage extends StatelessWidget {
                       style: GoogleFonts.dmSans(
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
-                        color: AppColorsLight.teksPrimary,),
+                        color: AppColorsLight.teksPrimary,
+                      ),
                     ),
                     const SizedBox(height: 5),
                     Container(
@@ -144,20 +164,21 @@ class EditProfilePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(-4, -4),
-                              color: Colors.white,
-                              inset: true
+                            blurRadius: 4,
+                            offset: Offset(-4, -4),
+                            color: Colors.white,
+                            inset: true,
                           ),
                           BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(4, 4),
-                              color: Color(0xFFD4D4D4),
-                              inset: true
+                            blurRadius: 4,
+                            offset: Offset(4, 4),
+                            color: Color(0xFFD4D4D4),
+                            inset: true,
                           ),
                         ],
                       ),
                       child: TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: 'Username@gmail.com',
                           hintStyle: GoogleFonts.dmSans(
@@ -167,7 +188,8 @@ class EditProfilePage extends StatelessWidget {
                           ),
                           border: InputBorder.none,
                           contentPadding: const EdgeInsets.symmetric(
-                              vertical: 14.0, horizontal: 16.0
+                            vertical: 14.0,
+                            horizontal: 16.0,
                           ),
                         ),
                       ),
@@ -178,7 +200,8 @@ class EditProfilePage extends StatelessWidget {
                       style: GoogleFonts.dmSans(
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
-                        color: AppColorsLight.teksPrimary,),
+                        color: AppColorsLight.teksPrimary,
+                      ),
                     ),
                     const SizedBox(height: 5),
                     Container(
@@ -188,20 +211,22 @@ class EditProfilePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(-4, -4),
-                              color: Colors.white,
-                              inset: true
+                            blurRadius: 4,
+                            offset: Offset(-4, -4),
+                            color: Colors.white,
+                            inset: true,
                           ),
                           BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(4, 4),
-                              color: Color(0xFFD4D4D4),
-                              inset: true
+                            blurRadius: 4,
+                            offset: Offset(4, 4),
+                            color: Color(0xFFD4D4D4),
+                            inset: true,
                           ),
                         ],
                       ),
                       child: TextField(
+                        controller: passwordController,
+                        obscureText: true,
                         decoration: InputDecoration(
                           hintText: '********',
                           hintStyle: GoogleFonts.dmSans(
@@ -211,61 +236,29 @@ class EditProfilePage extends StatelessWidget {
                           ),
                           border: InputBorder.none,
                           contentPadding: const EdgeInsets.symmetric(
-                              vertical: 14.0, horizontal: 16.0
+                            vertical: 14.0,
+                            horizontal: 16.0,
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 25),
-                    Text(
-                      'Confirm Password',
-                      style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: AppColorsLight.teksPrimary,),
-                    ),
-                    const SizedBox(height: 5),
-                    Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: AppColorsLight.primary,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: const [
-                          BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(-4, -4),
-                              color: Colors.white,
-                              inset: true
-                          ),
-                          BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(4, 4),
-                              color: Color(0xFFD4D4D4),
-                              inset: true
-                          ),
-                        ],
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: '********',
-                          hintStyle: GoogleFonts.dmSans(
-                            color: Colors.grey,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          border: InputBorder.none,
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 14.0, horizontal: 16.0
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 90),
+                    const SizedBox(height: 200),
                     SizedBox(
                       width: 360,
                       height: 55,
                       child: InkWell(
                         onTap: () {
+                          String username = usernameController.text;
+                          String email = emailController.text;
+                          String password = passwordController.text;
+
+                          // Panggil fungsi updateProfile di UserController
+                          userController.updateProfile(
+                            userController.userId.value,
+                            usernameController.text,
+                            emailController.text,
+                            passwordController.text.isNotEmpty ? passwordController.text : null,
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(
