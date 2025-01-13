@@ -15,22 +15,6 @@ class RegisterController extends GetxController {
 
   var isLoading = false.obs;
 
-  bool validateFields() {
-    if (usernameController.text.trim().isEmpty ||
-        emailController.text.trim().isEmpty ||
-        passwordController.text.trim().isEmpty) {
-      Get.snackbar(
-        'Validation Error',
-        'All fields must be filled.',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-      return false;
-    }
-    return true;
-  }
-
   Future<void> register() async {
     if (!validateFields()) return;
 
@@ -42,7 +26,6 @@ class RegisterController extends GetxController {
       'email': emailController.text.trim(),
       'password': passwordController.text.trim(),
     });
-    print("Request body: $requestBody");
 
     try {
       final response = await http.post(
@@ -54,46 +37,67 @@ class RegisterController extends GetxController {
         body: requestBody,
       );
 
+      final data = jsonDecode(response.body);
       if (response.statusCode == 201) {
         userController.setUsername(usernameController.text.trim());
-
-        Get.snackbar(
-          'Success',
-          'Account created successfully',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
+        showSuccessSnackbar('Account created successfully.');
         Get.offAll(() => LoginPage());
       } else if (response.statusCode == 409) {
-        Get.snackbar(
-          'Register Error',
-          'User already exists. Please try a different email or username.',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
+        showErrorSnackbar('User already exists. Please try a different email or username.');
       } else {
-        Get.snackbar(
-          'Register Error',
-          'Failed to register. Response: ${response.body}',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
+        showErrorSnackbar(data['message'] ?? 'Failed to register.');
       }
     } catch (e) {
-      print("Register exception: $e");
-      Get.snackbar(
-        'Register Error',
-        'An unexpected error occurred.',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      logError(e);
+      showErrorSnackbar('An unexpected error occurred.');
     } finally {
       isLoading.value = false;
     }
+  }
+
+  bool validateFields() {
+    final username = usernameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if (username.isEmpty || email.isEmpty || password.isEmpty) {
+      showErrorSnackbar('All fields must be filled.');
+      return false;
+    }
+    if (!GetUtils.isEmail(email)) {
+      showErrorSnackbar('Invalid email format.');
+      return false;
+    }
+    if (password.length < 6) {
+      showErrorSnackbar('Password must be at least 6 characters long.');
+      return false;
+    }
+    return true;
+  }
+
+  void showErrorSnackbar(String message) {
+    Get.snackbar(
+      'Error',
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+    );
+  }
+
+  void showSuccessSnackbar(String message) {
+    Get.snackbar(
+      'Success',
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+    );
+  }
+
+  void logError(dynamic error) {
+    // Implement centralized logging for better debugging.
+    print("Error: $error");
   }
 
   void navigateToLogin() {

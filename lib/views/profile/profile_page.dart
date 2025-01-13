@@ -31,20 +31,18 @@ class ProfilePage extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 55),
-                child: Container(
-                  width: 150,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                          color: Colors.black.withOpacity(.5),
-                          width: 2.0
-                      )
-                  ),
-                  child: const CircleAvatar(
+                child: Obx(() {
+                  return CircleAvatar(
                     radius: 60,
-                    backgroundImage: ExactAssetImage('assets/images/avatar/avatar.png'),
-                  ),
-                ),
+                    backgroundColor: AppColorsLight.third,
+                    child: CircleAvatar(
+                      radius: 58,
+                      backgroundImage: userController.userImage.value.isNotEmpty
+                          ? NetworkImage(userController.userImage.value)
+                          : const AssetImage('assets/images/avatar/avatar.png')
+                    ),
+                  );
+                }),
               ),
               const SizedBox(
                 height: 10,
