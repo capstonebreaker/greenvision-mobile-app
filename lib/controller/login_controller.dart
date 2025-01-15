@@ -31,23 +31,35 @@ class LoginController extends GetxController {
         }),
       );
 
-      final data = jsonDecode(response.body);
-      if (response.statusCode == 200 && data['access_token'] != null) {
-        String username = data['data']['username']?.trim() ?? 'Guest';
-        String email = data['data']['email'];
-        String? imgUrl = data['data']['img'];
-        String userId = data['data']['id'];  // Ambil userId dari response
+      if (response.statusCode == 200) {
+        try {
+          final data = jsonDecode(response.body);
 
-        // Menyimpan data pengguna di UserController
-        userController.setUsername(username);
-        userController.setEmail(email);
-        userController.setUserImage(imgUrl ?? '');
-        userController.setUserId(userId); // Menyimpan userId
+          if (data['access_token'] != null) {
+            String username = data['data']['username']?.trim() ?? 'Guest';
+            String email = data['data']['email'];
+            String? imgUrl = data['data']['img'];
+            String userId = data['data']['id'];
 
-        // Navigasi ke HomePage setelah login berhasil
-        Get.offAll(() => HomePage());
+            // Menyimpan data pengguna di UserController
+            userController.setUsername(username);
+            userController.setEmail(email);
+            userController.setUserImage(imgUrl ?? '');
+            userController.setUserId(userId);
+
+            // Navigasi ke HomePage setelah login berhasil
+            Get.offAll(() => HomePage());
+          } else {
+            showErrorSnackbar(data['message'] ?? 'Failed to login. Please check your credentials.');
+          }
+        } catch (e) {
+          // Menangani error saat parsing response.body
+          showErrorSnackbar('Failed to parse server response.');
+          logError(e);
+        }
       } else {
-        showErrorSnackbar(data['message'] ?? 'Failed to login. Please check your credentials.');
+        // Menangani status selain 200
+        showErrorSnackbar('Request failed with status: ${response.statusCode}');
       }
     } catch (e) {
       logError(e);
@@ -56,6 +68,7 @@ class LoginController extends GetxController {
       isLoading.value = false;
     }
   }
+
 
   bool validateFields() {
     final email = emailController.text.trim();

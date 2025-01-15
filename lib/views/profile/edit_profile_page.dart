@@ -5,28 +5,24 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:green_vision/constants/colors.dart';
 import 'package:green_vision/controller/user_controller.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditProfilePage extends StatefulWidget {
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
   final UserController userController = Get.find();
 
-  EditProfilePage({super.key});
+  @override
+  void initState() {
+    super.initState();
+    userController.newusernameController.text = userController.username.value;
+  }
+
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    // Text editing controllers for updating user details
-    final TextEditingController usernameController = TextEditingController(text: userController.username.value);
-    final TextEditingController emailController = TextEditingController(text: userController.email.value);
-    final TextEditingController passwordController = TextEditingController(text: userController.password.value);
-
-    // Perbarui nilai ketika TextField berubah
-    usernameController.addListener(() {
-      userController.setUsername(usernameController.text);
-    });
-
-    emailController.addListener(() {
-      userController.setEmail(emailController.text);
-    });
 
     return Scaffold(
       backgroundColor: AppColorsLight.primary,
@@ -66,18 +62,40 @@ class EditProfilePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: Colors.black.withOpacity(0.5),
+                        color: AppColorsLight.third,
                         width: 2.0,
                       ),
                     ),
-                    child: Obx(() {
-                      return CircleAvatar(
-                        radius: 55,
-                        backgroundImage: userController.userImage.value.isNotEmpty
-                            ? NetworkImage(userController.userImage.value)
-                            : const AssetImage('assets/images/avatar/avatar.png') as ImageProvider,
-                      );
-                    }),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Obx(() {
+                          return CircleAvatar(
+                            radius: 55,
+                            backgroundImage: userController.selectedImage.value !=
+                              null
+                                ? FileImage(userController.selectedImage.value!)
+                                : NetworkImage(userController.userImage.value) as ImageProvider,
+                          );
+                        }),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: IconButton(
+                            onPressed: userController.pickImage,
+                            icon: const Icon(
+                              Icons.edit,
+                              size: 20,
+                            ),
+                            style: IconButton.styleFrom(
+                              backgroundColor: AppColorsLight.third,
+                              foregroundColor: Colors.white,
+                            ),
+                          ),
+
+                        ),
+                      ],
+                    )
                   ),
                 ),
               ),
@@ -131,7 +149,7 @@ class EditProfilePage extends StatelessWidget {
                         ],
                       ),
                       child: TextField(
-                        controller: usernameController,
+                        controller: userController.newusernameController,
                         decoration: InputDecoration(
                           hintText: 'Username',
                           hintStyle: GoogleFonts.dmSans(
@@ -178,9 +196,9 @@ class EditProfilePage extends StatelessWidget {
                         ],
                       ),
                       child: TextField(
-                        controller: emailController,
+                        controller: userController.newemailController,
                         decoration: InputDecoration(
-                          hintText: 'Username@gmail.com',
+                          hintText: 'email@gmail.com',
                           hintStyle: GoogleFonts.dmSans(
                             color: Colors.grey,
                             fontSize: 14,
@@ -225,7 +243,7 @@ class EditProfilePage extends StatelessWidget {
                         ],
                       ),
                       child: TextField(
-                        controller: passwordController,
+                        controller: userController.newpasswordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: '********',
@@ -248,17 +266,8 @@ class EditProfilePage extends StatelessWidget {
                       height: 55,
                       child: InkWell(
                         onTap: () {
-                          String username = usernameController.text;
-                          String email = emailController.text;
-                          String password = passwordController.text;
-
-                          // Panggil fungsi updateProfile di UserController
-                          userController.updateProfile(
-                            userController.userId.value,
-                            usernameController.text,
-                            emailController.text,
-                            passwordController.text.isNotEmpty ? passwordController.text : null,
-                          );
+                          userController.showUpdateAccountConfirmationDialog(
+                              Get.context!, userController.id.value);
                         },
                         child: Container(
                           decoration: BoxDecoration(

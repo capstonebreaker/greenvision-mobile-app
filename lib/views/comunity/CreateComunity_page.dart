@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/colors.dart';
+import '../../controller/user_controller.dart';
 
 class CreatecomunityPage extends StatelessWidget {
-  const CreatecomunityPage({super.key});
+
+  final UserController userController = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +137,7 @@ class CreatecomunityPage extends StatelessWidget {
               const SizedBox(height: 10),
               Container(
                 height: 165,
+                width: 360,
                 decoration: BoxDecoration(
                   color: AppColorsLight.primary,
                   borderRadius: BorderRadius.circular(10.0),
@@ -150,18 +156,16 @@ class CreatecomunityPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    hintText: '+ Upload Gambar',
-                    hintStyle: GoogleFonts.dmSans(
-                      color: Colors.grey,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
+                child: Center(
+                  child: IconButton(
+                    onPressed: userController.pickImage,
+                    icon: const Icon(
+                      Icons.add_a_photo,
+                      size: 35,
                     ),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 82.5, horizontal: 16.0
+                    style: IconButton.styleFrom(
+                      backgroundColor: AppColorsLight.primary,
+                      foregroundColor: Colors.grey,
                     ),
                   ),
                 ),
