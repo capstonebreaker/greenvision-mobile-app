@@ -37,9 +37,10 @@ class ProfilePage extends StatelessWidget {
                     backgroundColor: AppColorsLight.third,
                     child: CircleAvatar(
                       radius: 58,
-                      backgroundImage: userController.userImage.value.isNotEmpty
-                          ? NetworkImage(userController.userImage.value)
-                          : const AssetImage('assets/images/avatar/avatar.png')
+                      backgroundImage: userController.selectedImage.value !=
+                          null
+                          ? FileImage(userController.selectedImage.value!)
+                          : NetworkImage(userController.userImage.value) as ImageProvider,
                     ),
                   );
                 }),

@@ -24,12 +24,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: AppColorsLight.primary,
-      //   foregroundColor: AppColorsLight.primary,
-      //   automaticallyImplyLeading: false,
-      //   elevation: 0,
-      // ),
       backgroundColor: AppColorsLight.primary,
       body: SmartRefresher(
         controller: Refresh,
@@ -64,9 +58,10 @@ class HomePage extends StatelessWidget {
                             backgroundColor: AppColorsLight.third,
                             child: CircleAvatar(
                               radius: 27,
-                              backgroundImage: userController.userImage.value.isNotEmpty
-                                  ? NetworkImage(userController.userImage.value)
-                                  : const AssetImage('assets/images/avatar/avatar.png')
+                              backgroundImage: userController.selectedImage.value !=
+                                  null
+                                  ? FileImage(userController.selectedImage.value!)
+                                  : NetworkImage(userController.userImage.value) as ImageProvider,
                             ),
                           );
                         }),
