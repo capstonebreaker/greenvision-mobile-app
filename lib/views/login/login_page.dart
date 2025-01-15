@@ -62,6 +62,7 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               top: 20, right: 24, left: 24, bottom: 0),
                           child: CustomTextField(
+                            key: const Key("Email"),
                             hintText: 'Email',
                             controller: controller.emailController,
                             leadingIconPath: 'assets/icons/mail.png',
@@ -74,6 +75,7 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               top: 20, right: 24, left: 24, bottom: 0),
                           child: CustomTextField(
+                            key: const Key("Password"),
                             hintText: 'Password',
                             controller: controller.passwordController,
                             obscureText: true,
@@ -85,6 +87,8 @@ class LoginPage extends StatelessWidget {
                           width: 360,
                           height: 55,
                           child: InkWell(
+                            key: const Key("btn_login"),
+
                             onTap: () {
                               controller.login();
                             },
@@ -134,6 +138,7 @@ class LoginPage extends StatelessWidget {
                             ),
                             SizedBox(width: 2),
                             InkWell(
+                              key: const Key("btn_toRegist"),
                               onTap: () {
                                 Navigator.of(context).push(
                                   PageRouteBuilder(

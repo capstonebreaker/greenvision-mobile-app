@@ -14,6 +14,7 @@ class UserController extends GetxController {
   late TextEditingController newemailController = TextEditingController();
   late TextEditingController newpasswordController = TextEditingController();
 
+  final SessionService _sessionService = SessionService();
   final Rx<File?> selectedImage = Rx<File?>(null);
   final RxBool isLoading = false.obs;
 
@@ -177,5 +178,10 @@ class UserController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<Map<String, dynamic>?> getUserInfo() async {
+    return await _sessionService.getUserInfo();  // Mengambil info user dari SessionService
+  }
+
 
 }
