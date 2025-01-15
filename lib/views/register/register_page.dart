@@ -63,6 +63,7 @@ class RegisterPage extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               top: 23, right: 24, left: 24, bottom: 0),
                           child: CustomTextField(
+                            key: const Key("Username"),
                             hintText: 'Username',
                             controller: controller.usernameController,
                             leadingIconPath: 'assets/icons/account.png',
@@ -72,6 +73,7 @@ class RegisterPage extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               top: 20, right: 24, left: 24, bottom: 0),
                           child: CustomTextField(
+                            key: const Key("Email"),
                             hintText: 'Email',
                             controller: controller.emailController,
                             leadingIconPath: 'assets/icons/mail.png',
@@ -81,6 +83,7 @@ class RegisterPage extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               top: 20, right: 24, left: 24, bottom: 0),
                           child: CustomTextField(
+                            key: const Key("Password"),
                             hintText: 'Password',
                             controller: controller.passwordController,
                             obscureText: true,
@@ -92,6 +95,7 @@ class RegisterPage extends StatelessWidget {
                           width: 360,
                           height: 55,
                           child: InkWell(
+                            key: const Key("btn_regis"),
                             onTap: () {
                               controller.register();
                             },
@@ -139,6 +143,7 @@ class RegisterPage extends StatelessWidget {
                             ),
                             SizedBox(width: 2),
                             InkWell(
+                              key: const Key("btn_tologin"),
                               onTap: () {
                                 Navigator.of(context).push(
                                   PageRouteBuilder(

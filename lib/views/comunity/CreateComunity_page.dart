@@ -1,15 +1,85 @@
+import 'dart:core';
+import 'dart:core';
+import 'dart:io';
+
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_vision/controller/comunity_controller.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../constants/colors.dart';
 import '../../controller/user_controller.dart';
 
-class CreatecomunityPage extends StatelessWidget {
+class CreatecomunityPage extends StatefulWidget {
 
+  @override
+  _CreatecomunityPageState createState() => _CreatecomunityPageState();
+}
+
+class _CreatecomunityPageState extends State<CreatecomunityPage> {
+  final _formKey = GlobalKey<FormState>();
   final UserController userController = Get.find();
+  final ComunityController _comunityController = ComunityController();
+
+  String title ='';
+  String description ='';
+  String authorId ='';
+  XFile? _selectedImage;
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        _selectedImage = image;
+      });
+    }
+  }
+
+  void _submitComunity() async {
+    print("Submit button clicked!"); // Debugging log
+
+    if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+      print("Form is valid!");  // Debugging log
+      _formKey.currentState!.save();
+
+      // Ambil authorId dari session
+      final userInfo = await userController.getUserInfo();
+      if (userInfo == null || userInfo['id'] == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('User information is missing')),
+        );
+        return;
+      }
+
+      String authorId = userInfo['id'];  // Ambil 'id' atau field yang benar sesuai dengan data pengguna
+
+      try {
+        final success = await _comunityController.createComunity(
+          title: title,
+          description: description,
+          authorId: authorId,
+          img: _selectedImage?.path ?? '',
+        );
+
+        if (success) {
+          Navigator.pop(context, true);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Failed to create community')),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
+    }
+  }
+
 
 
   @override
@@ -66,7 +136,7 @@ class CreatecomunityPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: TextField(
+                child: TextFormField(
                   decoration: InputDecoration(
                     hintText: 'Tambahkan Pertanyaan',
                     hintStyle: GoogleFonts.dmSans(
@@ -79,6 +149,9 @@ class CreatecomunityPage extends StatelessWidget {
                         vertical: 14.0, horizontal: 16.0
                     ),
                   ),
+                  onSaved: (value) => title = value!,
+                  validator: (value) =>
+                  value!.isNotEmpty ? 'Please enter a title' : null,
                 ),
               ),
               const SizedBox(height: 45),
@@ -110,7 +183,7 @@ class CreatecomunityPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: TextField(
+                child: TextFormField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     hintText: 'Jelaskan deskripsi',
@@ -124,6 +197,9 @@ class CreatecomunityPage extends StatelessWidget {
                         vertical: 82.5, horizontal: 16.0
                     ),
                   ),
+                  onSaved: (value) => description = value!,
+                  validator: (value) =>
+                  value!.isNotEmpty ? 'Please enter a title' : null,
                 ),
               ),
               const SizedBox(height: 45),
@@ -157,8 +233,9 @@ class CreatecomunityPage extends StatelessWidget {
                   ],
                 ),
                 child: Center(
-                  child: IconButton(
-                    onPressed: userController.pickImage,
+                  child: _selectedImage == null
+                  ? IconButton(
+                    onPressed: _pickImage,
                     icon: const Icon(
                       Icons.add_a_photo,
                       size: 35,
@@ -167,7 +244,11 @@ class CreatecomunityPage extends StatelessWidget {
                       backgroundColor: AppColorsLight.primary,
                       foregroundColor: Colors.grey,
                     ),
-                  ),
+                  ): Image.file(
+                      File(_selectedImage!.path),
+                    height: 165,
+                    width: 360,
+                  )
                 ),
               ),
               const SizedBox(height: 150),
@@ -175,8 +256,7 @@ class CreatecomunityPage extends StatelessWidget {
                 width: 360,
                 height: 55,
                 child: InkWell(
-                  onTap: () {
-                  },
+                  onTap: _submitComunity,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
