@@ -29,13 +29,13 @@ class ComunityPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 // Floating Button Atas
-                FloatingActionButton(
-                  onPressed: () {
-                    Get.to(() =>  CreatecomunityPage());
-                  },
-                  backgroundColor: AppColorsLight.third,
-                  child: const Icon(Icons.group_add),
-                ),
+                // FloatingActionButton(
+                //   onPressed: () {
+                //     Get.to(() =>  CreatecomunityPage());
+                //   },
+                //   backgroundColor: AppColorsLight.third,
+                //   child: const Icon(Icons.group_add),
+                // ),
                 const SizedBox(height: 16), // Jarak antara tombol atas dan bawah
                 // Floating Button Bawah
                 FloatingActionButton(
